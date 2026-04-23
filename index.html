@@ -75,10 +75,9 @@ button { cursor: pointer; }
   background: radial-gradient(ellipse at top, #1a2a5e 0%, #0b1030 60%, #05081e 100%);
   color: #fff;
   min-height: 100vh;
-  padding: 72px 32px 48px;
+  padding: 88px 32px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: relative;
   overflow: hidden;
 }
@@ -96,7 +95,7 @@ button { cursor: pointer; }
   pointer-events: none;
 }
 @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
-.cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+.cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; }
 .cover-sub {
   font-size: 13px;
   color: #8a9bd6;
@@ -109,7 +108,7 @@ button { cursor: pointer; }
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: 1px;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   background: linear-gradient(135deg, #fff 0%, #c4d4ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -120,7 +119,7 @@ button { cursor: pointer; }
   font-size: 15px;
   line-height: 1.9;
   color: #b4bfea;
-  margin-bottom: auto;
+  margin-bottom: 20px;
   opacity: 0;
 }
 .fade-in-1 { animation: fadeUp 0.6s 0.1s forwards; }
@@ -132,7 +131,8 @@ button { cursor: pointer; }
   to { opacity: 1; transform: translateY(0); }
 }
 .cover-brand {
-  margin-top: 20px;
+  margin-top: auto;
+  padding-top: 40px;
   text-align: center;
   font-size: 12px;
   color: #7b8cc9;
@@ -140,7 +140,7 @@ button { cursor: pointer; }
   opacity: 0;
 }
 .cover-brand span { color: #5b6ca3; font-size: 11px; }
-.scene-1 .btn-primary { margin-top: 24px; }
+.scene-1 .btn-primary { margin-top: 0; }
 
 /* ================= Scene 2 - Input ================= */
 .scene-header { margin-bottom: 28px; padding-top: 20px; }
@@ -494,7 +494,16 @@ button { cursor: pointer; }
           </select>
         </label>
         <label>
-          <span>当年分数（文/理/新高考都行）</span>
+          <span>高考类型</span>
+          <select id="in-type" required>
+            <option value="">请选择类型</option>
+            <option value="science">理科（老高考）</option>
+            <option value="arts">文科（老高考）</option>
+            <option value="new">新高考（3+1+2 / 3+3）</option>
+          </select>
+        </label>
+        <label>
+          <span>当年分数</span>
           <input id="in-score" type="number" min="200" max="750" placeholder="例如：568" required />
         </label>
         <p class="input-tip">PS：分数是折算依据，瞎填 AI 也不会骂你，只是结果会很草台 👀</p>
@@ -592,7 +601,7 @@ button { cursor: pointer; }
 /* ====================== 数据配置 ====================== */
 
 // 省份列表
-const PROVINCES = [
+var PROVINCES = [
   "北京", "天津", "河北", "山西", "内蒙古", "辽宁", "吉林", "黑龙江",
   "上海", "江苏", "浙江", "安徽", "福建", "江西", "山东",
   "河南", "湖北", "湖南", "广东", "广西", "海南",
@@ -607,7 +616,7 @@ for (var y = 2025; y >= 2000; y--) YEARS.push(y);
 // 简化版等位折算参数（按省份给出年度平均差异系数，简化使用）
 // 实际项目应调用位次对照 API；此处为 H5 demo 使用的近似公式
 // 逻辑：2026 等效分 ≈ 原始分 + (2026 - year) * 系数 + 省份偏移
-const PROV_OFFSET = {
+var PROV_OFFSET = {
   "北京": 8, "上海": 10, "天津": 5, "江苏": 12, "浙江": 10,
   "广东": 14, "山东": 15, "河南": 18, "河北": 15, "安徽": 13,
   "四川": 12, "湖北": 10, "湖南": 10, "福建": 8, "江西": 12,
@@ -617,7 +626,7 @@ const PROV_OFFSET = {
 };
 
 // 12 道 Chatbot 题目
-const QUESTIONS = [
+var QUESTIONS = [
   {
     id: 1,
     dim: "ability",
@@ -768,7 +777,7 @@ const QUESTIONS = [
 
 // 学校库：兴趣大类 + 学校 + 适配专业 + 理由
 // 覆盖 Top 200 + 特色神校
-const SCHOOLS = {
+var SCHOOLS = {
   // ============ 计算机/技术类 ============
   tech: [
     { name: "清华大学", major: "计算机科学与技术", reason: "代码的海洋里，你本该乘风破浪" },
@@ -847,7 +856,7 @@ const SCHOOLS = {
 };
 
 // 人设标签池
-const PERSONA_POOL = {
+var PERSONA_POOL = {
   // 根据 ability + personality + value 拼装
   text: { label: "文字叙事型", flavor: "笔锋比嘴快" },
   visual: { label: "视觉敏锐型", flavor: "对画面有种执念" },
@@ -857,7 +866,7 @@ const PERSONA_POOL = {
 };
 
 // 人设寄语池（根据主要 tag 组合）
-const QUOTES = {
+var QUOTES = {
   tech: "你本该在代码的海洋里乘风破浪，而不是在 Excel 的格子里发呆。",
   humanities: "你应该被更多故事滋养，而不是在 KPI 里消耗自己。",
   finance: "你对数字的直觉，本该让你站在更大的牌桌前。",
@@ -870,15 +879,26 @@ const QUOTES = {
 };
 
 // 分数等位折算函数（简化版）
-function convertScore(year, province, score) {
-  const diffYears = 2026 - year;
-  const provOff = PROV_OFFSET[province] || 8;
-  // 每年 ~3 分通胀 + 省份偏移 + 一点随机让结果更可信
-  const newScore = Math.round(score + diffYears * 2.8 + provOff * 0.5 + (Math.random() * 6 - 3));
-  const clamped = Math.max(200, Math.min(750, newScore));
+// examType: 'science' 理科 / 'arts' 文科 / 'new' 新高考
+function convertScore(year, province, score, examType) {
+  var diffYears = 2026 - year;
+  var provOff = PROV_OFFSET[province] || 8;
+
+  // 高考类型的系数调整：
+  // - 文科：历史同分难度更高，折算时等效分略上调
+  // - 理科：保持标准
+  // - 新高考：满分结构变化，整体偏高，折算时略下调以贴近真实位次
+  var typeOff = 0;
+  if (examType === 'arts') typeOff = 8;        // 文科同分更稀缺，加 8 分
+  else if (examType === 'new') typeOff = -6;   // 新高考普遍偏高，减 6 分
+  else typeOff = 0;                            // 理科标准
+
+  // 每年 ~2.8 分通胀 + 省份偏移 + 类型偏移 + 一点随机
+  var newScore = Math.round(score + diffYears * 2.8 + provOff * 0.5 + typeOff + (Math.random() * 6 - 3));
+  var clamped = Math.max(200, Math.min(750, newScore));
   // 简化位次：分数越高位次越小
-  const rank = Math.max(50, Math.round((750 - clamped) * 260 + 500 + Math.random() * 1000));
-  return { newScore: clamped, rank };
+  var rank = Math.max(50, Math.round((750 - clamped) * 260 + 500 + Math.random() * 1000));
+  return { newScore: clamped, rank: rank };
 }
 
 // 根据分数范围给一段点评
@@ -943,13 +963,15 @@ function submitInput(e) {
   e.preventDefault();
   var year = +document.getElementById('in-year').value;
   var prov = document.getElementById('in-prov').value;
+  var type = document.getElementById('in-type').value;
   var score = +document.getElementById('in-score').value;
-  if (!year || !prov || !score) return;
+  if (!year || !prov || !type || !score) return;
 
   state.year = year;
   state.province = prov;
+  state.examType = type;
   state.oldScore = score;
-  var result = convertScore(year, prov, score);
+  var result = convertScore(year, prov, score, type);
   state.newScore = result.newScore;
   state.rank = result.rank;
 
