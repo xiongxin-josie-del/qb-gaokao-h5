@@ -76,7 +76,6 @@ button { cursor: pointer; }
   color: #fff;
   min-height: 100vh;
   padding: 88px 32px 40px;
-  display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
@@ -213,7 +212,6 @@ button { cursor: pointer; }
 
 /* ================= Scene 4 - Chat ================= */
 .scene-4 {
-  display: none;
   flex-direction: column;
   height: 100vh;
   padding: 0;
@@ -950,7 +948,10 @@ function goScene(id) {
   }
   var target = document.getElementById(id);
   target.classList.add('active');
+  // 强制滚到页面顶部（兼容各种 WebView）
   window.scrollTo(0, 0);
+  if (document.documentElement) document.documentElement.scrollTop = 0;
+  if (document.body) document.body.scrollTop = 0;
 
   // 特殊场景初始化
   if (id === 'scene-calc') runCalcAnimation();
