@@ -245,10 +245,16 @@ button { cursor: pointer; }
 .scene-4 {
   flex-direction: column;
   height: 100vh;
+  height: 100dvh; /* 兼容 iOS 动态视口 */
   padding: 0;
   background: #f0f2f8;
+  min-height: 0; /* 覆盖 .scene 基础的 min-height: 100vh，避免超出 */
+  overflow: hidden;
 }
 .scene-4.active { display: flex; }
+/* 激活 scene-4 时，锁住 body 滚动，保证只有 chat-body 内部滚 */
+body.chat-locked { overflow: hidden; position: fixed; width: 100%; height: 100%; }
+body.chat-locked .app { height: 100vh; height: 100dvh; min-height: 0; }
 
 .chat-header {
   padding: 20px 20px 16px;
@@ -1714,6 +1720,14 @@ function goScene(id) {
   var scenes = document.querySelectorAll('.scene');
   for (var i = 0; i < scenes.length; i++) scenes[i].classList.remove('active');
   document.getElementById(id).classList.add('active');
+
+  // 进入/离开对话场景时切换 body 滚动锁
+  if (id === 'scene-chat') {
+    document.body.classList.add('chat-locked');
+  } else {
+    document.body.classList.remove('chat-locked');
+  }
+
   window.scrollTo(0, 0);
   if (document.documentElement) document.documentElement.scrollTop = 0;
   if (document.body) document.body.scrollTop = 0;
@@ -1840,24 +1854,20 @@ function pushUserBubble(text) {
   scrollToBubble(me);
 }
 
-// 滚动让气泡主动进入视野（比 scrollTop 更稳，兼容选项框高度变化）
+// 强力滚动到底部：多次触发，覆盖各种时序
 function scrollToBubble(el) {
+  var body = document.getElementById('chat-body');
+  if (!body) return;
+  // 立即触发一次
+  body.scrollTop = body.scrollHeight;
+  // 下一帧再触发（DOM 重新布局后）
   requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      if (el && el.scrollIntoView) {
-        try {
-          el.scrollIntoView({ block: 'end', behavior: 'smooth' });
-        } catch (e) {
-          // 老 WebView 降级
-          var body = document.getElementById('chat-body');
-          body.scrollTop = body.scrollHeight;
-        }
-      } else {
-        var body2 = document.getElementById('chat-body');
-        body2.scrollTop = body2.scrollHeight;
-      }
-    });
+    body.scrollTop = body.scrollHeight;
   });
+  // 再延迟几次保险（兼容 iOS WebView 动画时序）
+  setTimeout(function() { body.scrollTop = body.scrollHeight; }, 50);
+  setTimeout(function() { body.scrollTop = body.scrollHeight; }, 200);
+  setTimeout(function() { body.scrollTop = body.scrollHeight; }, 500);
 }
 
 // 渲染选项卡
