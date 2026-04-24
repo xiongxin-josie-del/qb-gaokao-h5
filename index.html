@@ -899,188 +899,188 @@ var Q8 = {
 /* ============ 主线分支：每条主线 3 道深挖题（Q5 Q6 Q7） ============ */
 
 var BRANCHES = {
-  /* ===== 理工 · 3 题 ===== */
+  /* ===== 理工（tech）===== */
   tech: [
     {
-      ai: "你正在用的某个 App 突然出了个 bug，你会——",
+      ai: "你的 WiFi 突然连不上了，你的第一反应是——",
       options: [
-        { t: "把 bug 写清楚，提一个像样的反馈", tag: "engineer" },
-        { t: "自己研究下，看能不能绕过去", tag: "hacker" },
-        { t: "搜搜有没有人踩过同样的坑", tag: "researcher" },
-        { t: "算了，换一个用", tag: "pragmatic" }
+        { t: "打开路由器管理页，一条条检查配置", tag: "engineer" },
+        { t: "拔插重启大法，十次有九次好", tag: "hacker" },
+        { t: "打客服电话，或问楼下邻居有没有同样问题", tag: "researcher" },
+        { t: "连手机热点先顶一下，回头再说", tag: "pragmatic" }
       ]
     },
     {
-      ai: "刷视频时，哪种内容会让你真的停下来多看两眼？",
+      ai: "下列账号的推送，你最有可能点进去认真看完的是——",
       options: [
-        { t: "把一个复杂系统拆开讲的流程图", tag: "systematic" },
-        { t: "一段优雅的公式 / 算法推导", tag: "theorist" },
-        { t: "有人把零件一件件组装成机器", tag: "maker" },
-        { t: "AI 演示它学会了某件事", tag: "frontier" }
+        { t: "一篇讲清楚 XX 底层原理的硬核长文", tag: "theorist" },
+        { t: "我用 AI 做了个自动 XX 的工具，开源了", tag: "builder" },
+        { t: "把一台旧电脑拆开改装成 XX", tag: "maker" },
+        { t: "YY 模型最新的 benchmark 数据", tag: "frontier" }
       ]
     },
     {
-      ai: "你希望别人怎么记住你？",
+      ai: "朋友用了你推荐的东西，回来跟你说不好用，你心里的第一反应是——",
       options: [
-        { t: "他做的东西，我一直在用", tag: "product" },
-        { t: "他是真懂这个的人", tag: "deep" },
-        { t: "他解决过一个特别难的问题", tag: "grit" },
-        { t: "他总有奇怪但对的想法", tag: "creative_tech" }
+        { t: "让我看看怎么不好用，大概率是使用姿势问题", tag: "deep" },
+        { t: "完蛋，我得赶紧找个替代方案给他补上", tag: "product" },
+        { t: "先问清楚场景，这产品本来就不适合所有人", tag: "systematic" },
+        { t: "啊？我用着挺好的呀", tag: "confident" }
       ]
     }
   ],
 
-  /* ===== 人文 · 3 题 ===== */
+  /* ===== 人文（humanities）===== */
   humanities: [
     {
-      ai: "看完一部让你触动的剧或书，你通常会——",
+      ai: "微博/小红书热榜同时挂着这些，你最先点的是——",
       options: [
-        { t: "翻评论和深度解读，想看透它", tag: "reader" },
-        { t: "写点自己的感受，哪怕没人看", tag: "writer" },
-        { t: "找人聊聊，听听别人怎么看", tag: "speaker" },
-        { t: "让它在心里多待一会儿，暂时不说", tag: "inner" }
+        { t: "某导演新片幕后访谈（长文）", tag: "narrative" },
+        { t: "学者 X 亲历 Y 历史事件自述", tag: "history" },
+        { t: "为什么现在的年轻人 XXX（社会观察）", tag: "sociology" },
+        { t: "一个 19 岁女孩的真实日记曝光", tag: "humanist" }
       ]
     },
     {
-      ai: "朋友向你倾诉了一件难事，你更像——",
+      ai: "深夜你失眠时，最容易做的事是——",
       options: [
-        { t: "耐心听完，不急着给建议", tag: "empathy" },
-        { t: "帮他一点点理清楚到底怎么回事", tag: "rational" },
-        { t: "能说出一句戳中他的话", tag: "verbal" },
-        { t: "默默陪着，不说太多", tag: "quiet" }
+        { t: "翻一本一直没读完的书", tag: "reader" },
+        { t: "把脑子里乱七八糟的想法写下来", tag: "writer" },
+        { t: "找一个能聊的人语音/文字聊", tag: "speaker" },
+        { t: "让它飘着，什么都不做", tag: "inner" }
       ]
     },
     {
-      ai: "看到一件不公平的事，你的第一反应是——",
+      ai: "看到一条让你很不舒服的新闻，你的下一步是——",
       options: [
-        { t: "把经过完整记录下来", tag: "journalist" },
-        { t: "查清楚规则上到底是怎么回事", tag: "law" },
-        { t: "想办法让更多人知道", tag: "advocate" },
-        { t: "先问当事人需要什么帮助", tag: "humanist" }
+        { t: "去查原文、看完整来龙去脉", tag: "journalist" },
+        { t: "查这件事背后的规则/法律怎么说的", tag: "law" },
+        { t: "转到自己主页，加一段自己的评论", tag: "advocate" },
+        { t: "去评论区找跟你一样感受的人", tag: "empathy" }
       ]
     }
   ],
 
-  /* ===== 艺术 · 3 题 ===== */
+  /* ===== 艺术（art）===== */
   art: [
     {
-      ai: "走进一家陌生的店，最先抓住你的是——",
+      ai: "出门旅行，你最舍不得跳过的是——",
       options: [
-        { t: "招牌、字体、配色", tag: "visual" },
-        { t: "灯光、音乐、氛围", tag: "ambient" },
-        { t: "货品摆设和质感", tag: "craft" },
-        { t: "店里的人穿什么、什么状态", tag: "fashion" }
+        { t: "一家设计感很强的小店", tag: "design" },
+        { t: "一场小众的演出或展览", tag: "scene" },
+        { t: "一条本地人才知道的老街巷", tag: "craft" },
+        { t: "一家拍照特别好看的咖啡馆", tag: "visual" }
       ]
     },
     {
-      ai: "你发朋友圈，最在乎的是什么？",
+      ai: "看到一件你特别喜欢的作品，你的第一冲动是——",
       options: [
-        { t: "颜色搭不搭", tag: "color" },
-        { t: "构图和光影对不对", tag: "composition" },
-        { t: "文字和图搭起来的调性", tag: "style" },
-        { t: "整件事的故事感", tag: "story" }
+        { t: "存下来，回去自己试着做一下", tag: "creator" },
+        { t: "分享给那个一定也会喜欢的人", tag: "sharer" },
+        { t: "想知道作者是谁，顺藤摸瓜找他的其他作品", tag: "collector" },
+        { t: "拍一张下来，发朋友圈", tag: "visual" }
       ]
     },
     {
-      ai: "你更想做哪种创作？",
+      ai: "让你做创作时，最头疼的一件事是——",
       options: [
-        { t: "画出来、设计出来的", tag: "design" },
-        { t: "写出来、拍出来的", tag: "film" },
-        { t: "弹出来、唱出来的", tag: "music" },
-        { t: "做出来、能摸到的", tag: "craft" }
+        { t: "卡在开头，迟迟下不了第一笔", tag: "ideator" },
+        { t: "中间反复推翻自己，做不出满意版本", tag: "perfectionist" },
+        { t: "发出去之后没什么反响，很丧", tag: "feedback" },
+        { t: "没灵感的空白期特别长", tag: "drought" }
       ]
     }
   ],
 
-  /* ===== 商业 · 3 题 ===== */
+  /* ===== 商业（business）===== */
   business: [
     {
-      ai: "看到一家店突然开始排长队，你的第一反应是——",
+      ai: "打开外卖 App 一看涨价了，你的反应是——",
       options: [
-        { t: "它的商业模式是什么？", tag: "model" },
-        { t: "来排队的都是什么人？", tag: "marketing" },
-        { t: "这是不是下一个风口？", tag: "trend" },
-        { t: "先排进去再说，体验完发朋友圈", tag: "consumer" }
+        { t: "哦，上游原料肯定又出事了", tag: "analyst" },
+        { t: "这家店是在试探定价策略吧", tag: "strategist" },
+        { t: "算了换一家，便宜 5 块是 5 块", tag: "pragmatic" },
+        { t: "趁它还没所有人涨价，再多吃几次", tag: "opportunist" }
       ]
     },
     {
-      ai: "同一件事，你更擅长哪一种？",
+      ai: "身边有人开始在朋友圈做点小生意，你的第一反应是——",
       options: [
-        { t: "把数字和信息理得清清楚楚", tag: "analyst" },
-        { t: "把一个想法讲到别人愿意买单", tag: "sales" },
-        { t: "把一件事从 0 推到能跑起来", tag: "operator" },
-        { t: "在一群人里发现可以合作的人", tag: "connector" }
+        { t: "好啊，支持一单，再帮他转发一下", tag: "connector" },
+        { t: "先观察一阵，看他做得怎么样再说", tag: "analyst" },
+        { t: "加他聊聊，问问利润空间，我也想做", tag: "founder" },
+        { t: "朋友圈做生意不太适合我，尊重但不参与", tag: "boundary" }
       ]
     },
     {
-      ai: "让你选一个标签，更想被叫——",
+      ai: "你手上突然有一笔 5000 块的意外收入，最可能的处理是——",
       options: [
-        { t: "会算账的聪明人", tag: "finance" },
-        { t: "会谈事的生意人", tag: "dealmaker" },
-        { t: "能带队的管理者", tag: "leader" },
-        { t: "会出点子的操盘手", tag: "strategist" }
+        { t: "研究一下有什么稳健的理财方式", tag: "finance" },
+        { t: "拿一部分投到我一直想做的事上", tag: "founder" },
+        { t: "先存着，以后有机会再说", tag: "saver" },
+        { t: "犒劳一下自己，买点早就想要的东西", tag: "consumer" }
       ]
     }
   ],
 
-  /* ===== 服务 · 3 题 ===== */
+  /* ===== 服务（service）===== */
   service: [
     {
-      ai: "身边的人遇到难处，你更常做的是——",
+      ai: "群里有人 @ 你求助一件小事，你通常的处理节奏是——",
       options: [
-        { t: "认真听完，再陪他理清楚", tag: "counselor" },
-        { t: "给他一个具体能做的建议", tag: "coach" },
-        { t: "默默帮他处理一些杂事", tag: "helper" },
-        { t: "把他拉进一个能帮到的圈子", tag: "connector" }
+        { t: "手上事放一放，先把他的事搞清楚", tag: "helper" },
+        { t: "回一句『稍等一下』，等空下来认真答", tag: "counselor" },
+        { t: "很快甩给他一个链接/教程", tag: "coach" },
+        { t: "帮他 @ 另一个更合适的人", tag: "connector" }
       ]
     },
     {
-      ai: "你更能从哪种成就感里获得能量？",
+      ai: "跟一个陌生人初次见面，你最容易做的事是——",
       options: [
-        { t: "看到一个人因你而改变了一点", tag: "educator" },
-        { t: "让一群人的生活更好一点", tag: "public" },
-        { t: "组织起一件原本没人做的事", tag: "organizer" },
-        { t: "让一段紧张的关系缓和下来", tag: "mediator" }
+        { t: "观察他的状态，配合他的节奏", tag: "perceiver" },
+        { t: "主动找话题打破冷场", tag: "organizer" },
+        { t: "认真听他说，记住细节", tag: "counselor" },
+        { t: "礼貌但保持距离，慢慢熟", tag: "careful" }
       ]
     },
     {
-      ai: "你希望自己被当成哪种人？",
+      ai: "看到朋友在朋友圈发负能量，你通常会——",
       options: [
-        { t: "值得信任的那个", tag: "trusted" },
-        { t: "能解决问题的那个", tag: "solver" },
-        { t: "懂我的那个", tag: "ally" },
-        { t: "可以托付的那个", tag: "reliable" }
+        { t: "私聊一句『你还好吗』", tag: "empathy" },
+        { t: "点赞，表示『我看见了』", tag: "quiet" },
+        { t: "评论区留一句让他笑的话", tag: "verbal" },
+        { t: "过两天找个由头约他出来吃个饭", tag: "action" }
       ]
     }
   ],
 
-  /* ===== 身体 · 3 题 ===== */
+  /* ===== 身体（body）===== */
   body: [
     {
-      ai: "以下几种状态，哪一个你最受不了？",
+      ai: "早上定了 7 点的闹钟，起床的第一感受通常是——",
       options: [
-        { t: "一整天坐着不动", tag: "active" },
-        { t: "一件事没个清楚的结果", tag: "disciplined" },
-        { t: "看人不舒服却帮不上忙", tag: "healer" },
-        { t: "周围一团乱没人管", tag: "guardian" }
+        { t: "有目标的一天开始了，出发！", tag: "discipline" },
+        { t: "再睡 10 分钟，我还扛得住", tag: "resilient" },
+        { t: "起来先做几个拉伸，让身体苏醒", tag: "routine" },
+        { t: "闹钟是什么？我听不见", tag: "chill" }
       ]
     },
     {
-      ai: "运动或户外时，你更享受——",
+      ai: "以下哪个场景最让你兴奋——",
       options: [
-        { t: "一个人稳稳跑下去的专注", tag: "solo_athlete" },
-        { t: "和队友一起赢一场的感觉", tag: "team_sport" },
-        { t: "挑战极限那一瞬的痛快", tag: "extreme" },
-        { t: "走山路、看风景的慢节奏", tag: "outdoor" }
+        { t: "体检报告各项指标都很漂亮", tag: "healer" },
+        { t: "训练一段时间后，身体明显变强了", tag: "sports" },
+        { t: "临时突发状况，你第一个反应过来并搞定", tag: "rescue" },
+        { t: "队伍/班组被你带得像一个人", tag: "guardian" }
       ]
     },
     {
-      ai: "你更向往哪种工作环境？",
+      ai: "如果让你选一个『这辈子不怕』的能力，你会选——",
       options: [
-        { t: "诊室 / 手术室，把身体修好", tag: "medical" },
-        { t: "操场 / 训练场，把身体练好", tag: "sports" },
-        { t: "户外 / 一线，把秩序守好", tag: "security" },
-        { t: "急救 / 救援现场，把命救回来", tag: "rescue" }
+        { t: "不怕流血，见到伤口能冷静处理", tag: "medical" },
+        { t: "不怕体力透支，再累也能顶住", tag: "resilient" },
+        { t: "不怕危险现场，能第一时间冲上去", tag: "rescue" },
+        { t: "不怕风险，看见不对的事能站出来", tag: "security" }
       ]
     }
   ]
@@ -1579,18 +1579,187 @@ var BRANCH_LABEL = {
   body: "行动派"
 };
 
-/* ============ 分数等位折算（含类型系数） ============ */
-function convertScore(year, province, score, examType) {
-  var diffYears = 2026 - year;
-  var provOff = PROV_OFFSET[province] || 8;
-  var typeOff = 0;
-  if (examType === 'arts') typeOff = 8;
-  else if (examType === 'new') typeOff = -6;
+/* ============ 各省考生总数（万）· 公开数据近似 ============ */
+// 用于根据百分位反推排名；2026 年是预估
+var PROV_CANDIDATES = {
+  "北京":    { 2000: 7,  2010: 8,  2015: 6,  2020: 5,  2023: 5.8,  2026: 6.3 },
+  "天津":    { 2000: 7,  2010: 6,  2015: 6,  2020: 5.6, 2023: 6.4,  2026: 7.0 },
+  "河北":    { 2000: 36, 2010: 50, 2015: 40, 2020: 62, 2023: 86,    2026: 92  },
+  "山西":    { 2000: 24, 2010: 35, 2015: 33, 2020: 32, 2023: 34,    2026: 35  },
+  "内蒙古":  { 2000: 17, 2010: 26, 2015: 21, 2020: 18, 2023: 21,    2026: 22  },
+  "辽宁":    { 2000: 25, 2010: 30, 2015: 24, 2020: 19, 2023: 19,    2026: 20  },
+  "吉林":    { 2000: 16, 2010: 21, 2015: 16, 2020: 13, 2023: 15,    2026: 16  },
+  "黑龙江":  { 2000: 22, 2010: 26, 2015: 19, 2020: 19, 2023: 18,    2026: 19  },
+  "上海":    { 2000: 10, 2010: 6,  2015: 5,  2020: 5,  2023: 5.4,   2026: 5.8 },
+  "江苏":    { 2000: 36, 2010: 52, 2015: 39, 2020: 34, 2023: 44,    2026: 48  },
+  "浙江":    { 2000: 25, 2010: 31, 2015: 28, 2020: 32, 2023: 39,    2026: 41  },
+  "安徽":    { 2000: 30, 2010: 56, 2015: 55, 2020: 53, 2023: 64,    2026: 67  },
+  "福建":    { 2000: 18, 2010: 26, 2015: 18, 2020: 20, 2023: 24,    2026: 25  },
+  "江西":    { 2000: 23, 2010: 35, 2015: 36, 2020: 42, 2023: 57,    2026: 60  },
+  "山东":    { 2000: 48, 2010: 66, 2015: 70, 2020: 53, 2023: 80,    2026: 85  },
+  "河南":    { 2000: 45, 2010: 95, 2015: 77, 2020: 116, 2023: 131,  2026: 136 },
+  "湖北":    { 2000: 26, 2010: 49, 2015: 36, 2020: 40, 2023: 46,    2026: 48  },
+  "湖南":    { 2000: 30, 2010: 42, 2015: 40, 2020: 54, 2023: 68,    2026: 72  },
+  "广东":    { 2000: 40, 2010: 65, 2015: 75, 2020: 78, 2023: 73,    2026: 76  },
+  "广西":    { 2000: 22, 2010: 30, 2015: 28, 2020: 40, 2023: 61,    2026: 63  },
+  "海南":    { 2000: 4,  2010: 6,  2015: 6,  2020: 6,  2023: 6.4,   2026: 7.0 },
+  "重庆":    { 2000: 12, 2010: 19, 2015: 25, 2020: 19, 2023: 33,    2026: 34  },
+  "四川":    { 2000: 30, 2010: 52, 2015: 52, 2020: 52, 2023: 78,    2026: 80  },
+  "贵州":    { 2000: 12, 2010: 22, 2015: 28, 2020: 38, 2023: 47,    2026: 49  },
+  "云南":    { 2000: 15, 2010: 22, 2015: 27, 2020: 29, 2023: 40,    2026: 42  },
+  "西藏":    { 2000: 1,  2010: 2,  2015: 2.5,2020: 3,  2023: 3.5,   2026: 4.0 },
+  "陕西":    { 2000: 22, 2010: 38, 2015: 32, 2020: 32, 2023: 33,    2026: 34  },
+  "甘肃":    { 2000: 14, 2010: 29, 2015: 28, 2020: 27, 2023: 24,    2026: 24  },
+  "青海":    { 2000: 3,  2010: 5,  2015: 4.5,2020: 4.6,2023: 5.2,   2026: 5.5 },
+  "宁夏":    { 2000: 4,  2010: 7,  2015: 6,  2020: 6.7,2023: 7.4,   2026: 7.8 },
+  "新疆":    { 2000: 8,  2010: 14, 2015: 16, 2020: 18, 2023: 23,    2026: 24  }
+};
 
-  var newScore = Math.round(score + diffYears * 2.8 + provOff * 0.5 + typeOff + (Math.random() * 6 - 3));
+// 各省考生数在年份上做线性插值
+function getCandidates(province, year) {
+  var map = PROV_CANDIDATES[province] || PROV_CANDIDATES["河北"];
+  var years = [2000, 2010, 2015, 2020, 2023, 2026];
+  // 找上下两个锚点
+  for (var i = 0; i < years.length - 1; i++) {
+    if (year >= years[i] && year <= years[i + 1]) {
+      var y1 = years[i], y2 = years[i + 1];
+      var v1 = map[y1], v2 = map[y2];
+      var t = (year - y1) / (y2 - y1);
+      return v1 + (v2 - v1) * t;
+    }
+  }
+  if (year < 2000) return map[2000];
+  return map[2026];
+}
+
+/* ============ 分数分布（均值 / 标准差）· 按年份 + 高考类型 ============ */
+// science = 老高考理科（满分 750）
+// arts    = 老高考文科（满分 750）
+// new     = 新高考 3+1+2（满分 750）/ 3+3（满分 750）
+// 这些是全国范围内的大致中心值，省间差异用 PROV_OFFSET 微调
+var SCORE_DISTRIBUTION = {
+  science: {
+    2000: { mean: 420, sd: 85 },
+    2005: { mean: 440, sd: 82 },
+    2010: { mean: 455, sd: 80 },
+    2015: { mean: 470, sd: 80 },
+    2020: { mean: 480, sd: 78 },
+    2023: { mean: 490, sd: 76 },
+    2026: { mean: 495, sd: 75 }
+  },
+  arts: {
+    2000: { mean: 440, sd: 72 },
+    2005: { mean: 455, sd: 72 },
+    2010: { mean: 465, sd: 70 },
+    2015: { mean: 478, sd: 70 },
+    2020: { mean: 490, sd: 68 },
+    2023: { mean: 498, sd: 66 },
+    2026: { mean: 502, sd: 65 }
+  },
+  new: {
+    // 新高考从 2017 年开始（浙沪），2021 年后大范围普及
+    2017: { mean: 500, sd: 72 },
+    2020: { mean: 510, sd: 70 },
+    2023: { mean: 518, sd: 68 },
+    2026: { mean: 522, sd: 68 }
+  }
+};
+
+// 按年份在上下锚点间插值均值和标准差
+function getDistribution(year, examType) {
+  var table = SCORE_DISTRIBUTION[examType] || SCORE_DISTRIBUTION.science;
+  var keys = Object.keys(table).map(function(k) { return parseInt(k, 10); }).sort(function(a, b) { return a - b; });
+  if (year <= keys[0]) return table[keys[0]];
+  if (year >= keys[keys.length - 1]) return table[keys[keys.length - 1]];
+  for (var i = 0; i < keys.length - 1; i++) {
+    if (year >= keys[i] && year <= keys[i + 1]) {
+      var y1 = keys[i], y2 = keys[i + 1];
+      var d1 = table[y1], d2 = table[y2];
+      var t = (year - y1) / (y2 - y1);
+      return {
+        mean: d1.mean + (d2.mean - d1.mean) * t,
+        sd: d1.sd + (d2.sd - d1.sd) * t
+      };
+    }
+  }
+  return table[keys[keys.length - 1]];
+}
+
+// 标准正态 CDF（Abramowitz & Stegun 近似，误差 < 7.5e-8）
+function normalCDF(z) {
+  var a1 =  0.254829592, a2 = -0.284496736, a3 =  1.421413741;
+  var a4 = -1.453152027, a5 =  1.061405429, p = 0.3275911;
+  var sign = z < 0 ? -1 : 1;
+  var x = Math.abs(z) / Math.sqrt(2);
+  var t = 1.0 / (1.0 + p * x);
+  var y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return 0.5 * (1.0 + sign * y);
+}
+
+// 标准正态 CDF 反函数（Beasley-Springer-Moro 近似）
+function normalInv(p) {
+  if (p <= 0) return -6;
+  if (p >= 1) return 6;
+  var a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02,
+            1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+  var b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02,
+            6.680131188771972e+01, -1.328068155288572e+01];
+  var c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00,
+           -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+  var d = [ 7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00,
+            3.754408661907416e+00];
+  var pl = 0.02425, ph = 1 - pl;
+  var q, r;
+  if (p < pl) {
+    q = Math.sqrt(-2 * Math.log(p));
+    return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  } else if (p <= ph) {
+    q = p - 0.5; r = q*q;
+    return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q /
+           (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+  } else {
+    q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  }
+}
+
+/* ============ 分数等位折算（正态分布近似 · 等位换算） ============ */
+// 逻辑：当年分数 → 百分位（假设正态分布）→ 当年排名 →
+//       2026 年同百分位 → 2026 年等位分
+function convertScore(year, province, score, examType) {
+  // 类型兜底：新高考只覆盖 2017+，否则退回老高考
+  var type = examType || 'science';
+  if (type === 'new' && year < 2017) type = 'science';
+
+  var dist = getDistribution(year, type);
+  var provOff = PROV_OFFSET[province] || 8;
+  // 省份难度：高考大省均值略低一点（竞争大，更难拿高分）
+  var adjustedMean = dist.mean - (provOff - 8) * 0.5;
+
+  // 当年 z-score
+  var z = (score - adjustedMean) / dist.sd;
+  // 当年累积百分位（0-1）
+  var percentile = normalCDF(z);
+
+  // 当年排名 = (1 - 百分位) × 当年考生数
+  var candidatesOld = getCandidates(province, year) * 10000;
+  var oldRank = Math.max(1, Math.round((1 - percentile) * candidatesOld));
+
+  // 2026 年同百分位 → 反推等位分
+  var dist2026 = getDistribution(2026, type);
+  var adjustedMean2026 = dist2026.mean - (provOff - 8) * 0.5;
+  var z2026 = normalInv(percentile);
+  var newScore = Math.round(adjustedMean2026 + z2026 * dist2026.sd);
+
+  // 加一点微小扰动（让同一人两次结果略不同，更像"估算"而非"定值"）
+  newScore = newScore + Math.round((Math.random() - 0.5) * 4);
   var clamped = Math.max(200, Math.min(750, newScore));
-  var rank = Math.max(50, Math.round((750 - clamped) * 260 + 500 + Math.random() * 1000));
-  return { newScore: clamped, rank: rank };
+
+  // 2026 年等位排名
+  var candidates2026 = getCandidates(province, 2026) * 10000;
+  var newRank = Math.max(50, Math.round((1 - percentile) * candidates2026));
+
+  return { newScore: clamped, rank: newRank, oldRank: oldRank, percentile: percentile };
 }
 
 /* ============ 分数 → 档位 ============ */
