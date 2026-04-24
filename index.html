@@ -6,10 +6,8 @@
   <meta name="format-detection" content="telephone=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="renderer" content="webkit" />
-  <!-- 微信分享卡片 -->
   <meta property="og:title" content="如果可以重填一次志愿……" />
-  <meta property="og:description" content="AI 帮你偷看一眼平行时空的自己，看看你本该去哪所大学" />
-  <meta property="og:image" content="https://qb-gaokao-h5.vercel.app/share-cover.png" />
+  <meta property="og:description" content="QBot 陪你回去看一眼 18 岁的自己" />
   <meta property="og:type" content="website" />
   <title>如果可以重填一次志愿……｜QQ浏览器AI高考通</title>
   <style>
@@ -59,6 +57,20 @@ button { cursor: pointer; }
 }
 .btn-primary:active { transform: scale(0.98); }
 .btn-primary.hidden { display: none; }
+
+.btn-secondary {
+  width: 100%;
+  padding: 14px 20px;
+  margin-top: 10px;
+  background: #fff;
+  color: #2c5cff;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1.5px solid #2c5cff;
+  border-radius: 999px;
+}
+.btn-secondary:active { background: #eef3ff; }
+
 .btn-ghost {
   width: 100%;
   padding: 14px 20px;
@@ -81,6 +93,7 @@ button { cursor: pointer; }
   overflow: hidden;
 }
 .scene-1.active { display: flex; }
+
 .bg-stars {
   position: absolute; inset: 0;
   background-image:
@@ -94,6 +107,7 @@ button { cursor: pointer; }
   pointer-events: none;
 }
 @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
+
 .cover-inner { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; }
 .cover-sub {
   font-size: 13px;
@@ -107,7 +121,7 @@ button { cursor: pointer; }
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: 1px;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   background: linear-gradient(135deg, #fff 0%, #c4d4ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -118,9 +132,10 @@ button { cursor: pointer; }
   font-size: 15px;
   line-height: 1.9;
   color: #b4bfea;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   opacity: 0;
 }
+
 .fade-in-1 { animation: fadeUp 0.6s 0.1s forwards; }
 .fade-in-2 { animation: fadeUp 0.8s 0.4s forwards; }
 .fade-in-3 { animation: fadeUp 0.6s 1.0s forwards; }
@@ -129,6 +144,7 @@ button { cursor: pointer; }
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 .cover-brand {
   margin-top: auto;
   padding-top: 40px;
@@ -138,16 +154,20 @@ button { cursor: pointer; }
   line-height: 1.8;
   opacity: 0;
 }
-.cover-brand span { color: #5b6ca3; font-size: 11px; }
+.cover-brand b { color: #b4bfea; font-weight: 600; }
+.cover-brand span { color: #5b6ca3; font-size: 11px; display: block; margin-top: 4px; }
+
 .scene-1 .btn-primary { margin-top: 0; }
 
 /* ================= Scene 2 - Input ================= */
 .scene-header { margin-bottom: 28px; padding-top: 20px; }
 .scene-header h2 { font-size: 24px; color: #1a1a2e; font-weight: 800; margin-bottom: 8px; }
-.scene-header p { font-size: 14px; color: #707798; }
+.scene-header p { font-size: 14px; color: #707798; line-height: 1.7; }
+
 .input-form { display: flex; flex-direction: column; gap: 18px; }
 .input-form label { display: flex; flex-direction: column; gap: 8px; }
 .input-form label span { font-size: 13px; color: #3a3f5e; font-weight: 600; }
+.input-form label .opt { color: #9ba2bc; font-weight: normal; font-size: 12px; }
 .input-form select,
 .input-form input {
   width: 100%;
@@ -172,13 +192,12 @@ button { cursor: pointer; }
   color: #707798;
   margin-bottom: 36px;
   letter-spacing: 1px;
+  text-align: center;
   animation: pulse 1.5s ease-in-out infinite;
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-.calc-anim {
-  display: flex; align-items: center; gap: 18px;
-  margin-bottom: 36px;
-}
+
+.calc-anim { display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
 .num-old, .num-new {
   width: 110px; height: 70px;
   display: flex; align-items: center; justify-content: center;
@@ -191,6 +210,7 @@ button { cursor: pointer; }
 }
 .num-new { color: #ff6b35; box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2); }
 .arrow { font-size: 24px; color: #b4bfea; }
+
 .calc-result {
   background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
   padding: 28px 24px;
@@ -198,7 +218,7 @@ button { cursor: pointer; }
   width: 100%;
   text-align: center;
   box-shadow: 0 12px 36px rgba(20, 30, 80, 0.08);
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   opacity: 0;
   animation: fadeUp 0.5s 1.8s forwards;
 }
@@ -207,7 +227,18 @@ button { cursor: pointer; }
 .calc-result .line2 { font-size: 14px; color: #707798; }
 .calc-result .line3 { font-size: 32px; font-weight: 800; color: #ff6b35; margin: 8px 0; }
 .calc-result .line4 { font-size: 14px; color: #707798; }
-.calc-result .line5 { font-size: 13px; color: #2c5cff; margin-top: 8px; font-weight: 600; }
+.calc-result .line5 { font-size: 13px; color: #2c5cff; margin-top: 10px; font-weight: 600; }
+
+.calc-disclaimer {
+  font-size: 11px;
+  color: #9ba2bc;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp 0.5s 2.0s forwards;
+}
+
 #btn-next-chat { opacity: 0; animation: fadeUp 0.5s 2.4s forwards; }
 
 /* ================= Scene 4 - Chat ================= */
@@ -218,6 +249,7 @@ button { cursor: pointer; }
   background: #f0f2f8;
 }
 .scene-4.active { display: flex; }
+
 .chat-header {
   padding: 20px 20px 16px;
   background: #fff;
@@ -226,6 +258,7 @@ button { cursor: pointer; }
   gap: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   z-index: 2;
+  flex-shrink: 0;
 }
 .chat-header .avatar {
   width: 42px; height: 42px; border-radius: 50%;
@@ -236,11 +269,13 @@ button { cursor: pointer; }
 }
 .chat-header .title .name { font-size: 15px; font-weight: 700; color: #1a1a2e; }
 .chat-header .title .sub { font-size: 12px; color: #8a91ad; margin-top: 2px; }
+
 .chat-body {
   flex: 1;
   overflow-y: auto;
   padding: 20px 16px 16px;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .bubble {
   max-width: 86%;
@@ -250,6 +285,7 @@ button { cursor: pointer; }
   line-height: 1.6;
   margin-bottom: 12px;
   animation: bubbleIn 0.3s ease;
+  word-break: break-word;
 }
 @keyframes bubbleIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -272,6 +308,7 @@ button { cursor: pointer; }
   background: #fff;
   color: #8a91ad;
   width: fit-content;
+  min-width: 60px;
 }
 .bubble.typing::after {
   content: '···';
@@ -283,15 +320,17 @@ button { cursor: pointer; }
   50% { content: '···'; }
   75% { content: '····'; }
 }
+
 .chat-options {
-  padding: 16px;
+  padding: 14px 16px 20px;
   background: #fff;
   border-top: 1px solid #eef1f7;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 52vh;
+  max-height: 54vh;
   overflow-y: auto;
+  flex-shrink: 0;
 }
 .option-card {
   width: 100%;
@@ -435,6 +474,11 @@ button { cursor: pointer; }
 .alt-card .alt-reason { font-size: 12px; color: #707798; margin-top: 8px; line-height: 1.5; }
 .alt-card:nth-child(2) { border-left-color: #ff6b35; }
 .alt-card:nth-child(3) { border-left-color: #06c755; }
+.alt-card.egg {
+  background: linear-gradient(135deg, #fffbe8 0%, #fff6d6 100%);
+  border-left-color: #e4c789 !important;
+}
+.alt-card.egg .alt-label { color: #b8975a; font-weight: 700; }
 
 /* CTA 区域 */
 .result-cta {
@@ -447,27 +491,83 @@ button { cursor: pointer; }
 .result-cta .cta-lead { font-size: 14px; color: #8a91ad; margin-bottom: 4px; }
 .result-cta .cta-desc { font-size: 18px; color: #1a1a2e; margin-bottom: 18px; font-weight: 600; }
 .result-cta .cta-desc b { color: #ff6b35; font-size: 22px; }
-.share-tip { margin-top: 12px; font-size: 12px; color: #8a91ad; }
+.share-tip { margin-top: 12px; font-size: 12px; color: #8a91ad; line-height: 1.7; }
+
+/* ================= 海报弹窗 ================= */
+.poster-mask {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 999;
+  padding: 40px 24px;
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: center;
+  -webkit-overflow-scrolling: touch;
+}
+.poster-mask.active { display: flex; }
+.poster-box {
+  max-width: 360px;
+  width: 100%;
+  position: relative;
+}
+.poster-close {
+  position: absolute;
+  top: -32px; right: 0;
+  width: 28px; height: 28px;
+  color: #fff;
+  font-size: 22px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.poster-loading {
+  width: 100%;
+  padding: 80px 0;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+.poster-img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+  display: none;
+}
+.poster-tip {
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 18px;
+  line-height: 1.7;
+}
+.poster-tip b { color: #e4c789; font-weight: 600; }
+#poster-canvas { display: none; }
 
 </style>
 </head>
 <body>
-  <!-- 移动端容器 -->
   <div class="app">
 
     <!-- ========== Scene 1 : 首屏 ========== -->
     <section class="scene scene-1 active" id="scene-cover">
       <div class="bg-stars"></div>
       <div class="cover-inner">
-        <p class="cover-sub fade-in-1">致每一个填志愿填到失眠过的人</p>
+        <p class="cover-sub fade-in-1">QBot · 一次不算数、但挺认真的模拟</p>
         <h1 class="cover-title fade-in-2">
           如果可以<br />重填一次志愿……
         </h1>
+        <p class="cover-desc fade-in-3">
+          把当年的分数交给 QBot<br />
+          看看现在，它们能带你去哪
+        </p>
         <button class="btn-primary fade-in-4" onclick="goScene('scene-input')">
-          打开 AI 平行时空 →
+          开始吧 →
         </button>
         <p class="cover-brand fade-in-4">
-          QQ浏览器AI高考通<br /><span>志愿科学辅助，每一分都算数</span>
+          <b>QBot</b> 是你的专属 AI 顾问，<br />
+          由 QQ浏览器AI高考通 出品
+          <span>* 本测试仅供娱乐，不作为志愿建议</span>
         </p>
       </div>
     </section>
@@ -475,8 +575,8 @@ button { cursor: pointer; }
     <!-- ========== Scene 2 : 信息输入页 ========== -->
     <section class="scene scene-2" id="scene-input">
       <div class="scene-header">
-        <h2>先报上你的"老档案"</h2>
-        <p>告诉 AI，你那年的高考成绩</p>
+        <h2>先，把你的"老档案"交过来</h2>
+        <p>QBot 会围绕这几个数字做点文章</p>
       </div>
       <form class="input-form" onsubmit="submitInput(event)">
         <label>
@@ -504,54 +604,57 @@ button { cursor: pointer; }
           <span>当年分数</span>
           <input id="in-score" type="number" min="200" max="750" placeholder="例如：568" required />
         </label>
-        <p class="input-tip">PS：分数是折算依据，瞎填 AI 也不会骂你，只是结果会很草台 👀</p>
-        <button class="btn-primary" type="submit">让 AI 给我算算 →</button>
+        <label>
+          <span>给 18 岁的自己一个称呼 <span class="opt">（选填，会印在通知书上）</span></span>
+          <input id="in-nick" type="text" maxlength="8" placeholder="真名 / 昵称 / 外号都行" />
+        </label>
+        <p class="input-tip">PS：填啥都成，QBot 照演不误</p>
+        <button class="btn-primary" type="submit">让 QBot 给我算算 →</button>
       </form>
     </section>
 
     <!-- ========== Scene 3 : 分数折算揭晓 ========== -->
     <section class="scene scene-3" id="scene-calc">
       <div class="calc-inner">
-        <p class="calc-step">⏳ 时光倒流 +2026 的齿轮启动…</p>
+        <p class="calc-step">QBot 正在换算你当年的分数<br />在 2026 年的含金量……</p>
         <div class="calc-anim">
           <div class="num-old" id="num-old">—</div>
           <div class="arrow">→</div>
           <div class="num-new" id="num-new">—</div>
         </div>
         <div class="calc-result" id="calc-result">
-          <p class="line1">叮！<span id="r-year"></span>年 <span id="r-prov"></span> <span id="r-old"></span> 分</p>
-          <p class="line2">在 <b>2026 年</b> 重新折算后……</p>
+          <p class="line1"><span id="r-year"></span> 年 · <span id="r-prov"></span> · <span id="r-old"></span> 分</p>
+          <p class="line2">在 <b>2026 年</b> 约等于</p>
           <p class="line3">★ <span id="r-new"></span> 分 ★</p>
-          <p class="line4">全省约第 <span id="r-rank"></span> 位</p>
-          <p class="line5" id="r-comment">——恭喜你，挤进前列 👏</p>
+          <p class="line4">大约位列全省第 <span id="r-rank"></span> 位</p>
+          <p class="line5" id="r-comment">——</p>
         </div>
+        <p class="calc-disclaimer">
+          * 仅是娱乐换算，不代表真实位次
+        </p>
         <button class="btn-primary hidden" id="btn-next-chat" onclick="goScene('scene-chat')">
-          下一步：灵魂拷问 12 题 →
+          接着聊 →
         </button>
       </div>
     </section>
 
-    <!-- ========== Scene 4 : 12 轮 Chatbot 对话 ========== -->
+    <!-- ========== Scene 4 : 8 题 Chatbot ========== -->
     <section class="scene scene-4" id="scene-chat">
       <div class="chat-header">
-        <div class="avatar">AI</div>
+        <div class="avatar">Q</div>
         <div class="title">
-          <p class="name">QQ浏览器AI高考通</p>
-          <p class="sub">正在陪你重写人生 · <span id="chat-progress">1/12</span></p>
+          <p class="name">QBot</p>
+          <p class="sub">QQ浏览器AI顾问 · <span id="chat-progress">1/8</span></p>
         </div>
       </div>
-      <div class="chat-body" id="chat-body">
-        <!-- 对话气泡将由 JS 渲染 -->
-      </div>
-      <div class="chat-options" id="chat-options">
-        <!-- 选项卡将由 JS 渲染 -->
-      </div>
+      <div class="chat-body" id="chat-body"></div>
+      <div class="chat-options" id="chat-options"></div>
     </section>
 
-    <!-- ========== Scene 5 : 结果页 - 录取通知书 ========== -->
+    <!-- ========== Scene 5 : 结果页 ========== -->
     <section class="scene scene-5" id="scene-result">
       <div class="result-header">
-        <p class="small">以下是 AI 为你揭晓的</p>
+        <p class="small">QBot 为你生成的</p>
         <h2>平行时空录取通知书</h2>
         <p class="desc">那个 18 岁的你，也许正走在另一条路上</p>
       </div>
@@ -563,40 +666,71 @@ button { cursor: pointer; }
         <h3 class="notice-school" id="notice-school">XX 大学</h3>
         <p class="notice-major">专业：<span id="notice-major">XX 专业</span></p>
         <div class="notice-divider"></div>
-        <p class="notice-hello">亲爱的<span id="notice-name"> 你 </span>：</p>
+        <p class="notice-hello">亲爱的<span id="notice-name"> 你 </span>同学：</p>
         <p class="notice-body">
-          经过 AI 对 <b>12 道人生问题</b> 的认真推演，<br />
-          你被我校录取。<br /><br />
-          <span class="persona" id="notice-persona">i 人卷王 · 理性型</span>
+          QBot 看完了你的分数和 8 道选择题，<br />
+          这就是你，在另一条时间线上的人生坐标。<br /><br />
+          <span class="persona" id="notice-persona">理工派 · 深度钻研型</span>
         </p>
-        <p class="notice-quote" id="notice-quote">"你本该在代码的海洋里乘风破浪，而不是蜷缩在 Excel 的格子里。"</p>
+        <p class="notice-quote" id="notice-quote">——</p>
         <div class="notice-footer">
           <p>QQ浏览器AI高考通</p>
-          <p class="small">志愿科学辅助，每一分都算数</p>
+          <p class="small">每一分都算数</p>
         </div>
       </div>
 
-      <!-- 3 所备选平行时空 -->
+      <!-- 备选 3 所 -->
       <div class="alt-list">
         <p class="alt-title">· 其他平行时空里的你 ·</p>
         <div class="alt-cards" id="alt-cards"></div>
       </div>
 
-      <!-- CTA -->
+      <!-- CTA 区域 -->
       <div class="result-cta">
         <p class="cta-lead">回到现实——</p>
-        <p class="cta-desc">想看看你今年 <b id="cta-score"></b> 分真的能上哪？</p>
-        <button class="btn-primary" onclick="jumpToQB()">打开 AI 高考通，查真实方案 →</button>
-        <p class="share-tip">长按保存通知书，发朋友圈晒出你的平行人生 ✨</p>
+        <p class="cta-desc">想看看真·今年能上哪？</p>
+        <button class="btn-primary" onclick="jumpToQB()">
+          去 QQ浏览器AI高考通 看看真实情况 →
+        </button>
+        <button class="btn-secondary" onclick="generatePoster()">
+          生成我的专属海报 ✨
+        </button>
+        <p class="share-tip">
+          保存后发朋友圈/群，让朋友猜猜<br />
+          18 岁的你本该在哪
+        </p>
       </div>
 
       <button class="btn-ghost" onclick="restart()">↺ 换一个平行时空</button>
     </section>
 
+    <!-- ========== 海报弹窗 ========== -->
+    <div class="poster-mask" id="poster-mask">
+      <div class="poster-box">
+        <div class="poster-close" onclick="closePoster()">×</div>
+        <div class="poster-loading" id="poster-loading">
+          QBot 正在调色…
+        </div>
+        <img class="poster-img" id="poster-img" alt="平行时空录取通知书" />
+        <p class="poster-tip">
+          <b>长按图片 · 保存到相册</b><br />
+          然后去朋友圈、群里发出来 ✨
+        </p>
+      </div>
+      <canvas id="poster-canvas"></canvas>
+    </div>
+
   </div>
 
+  <!-- 二维码生成库（轻量） -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
   <script>
-/* ====================== 数据配置 ====================== */
+/* ====================== 数据配置 · v2 ====================== */
+/*  - 主线：6 条（tech/humanities/art/business/service/body）
+ *  - 题目：Q1+Q2 固定前置 + 每主线 6 道深挖
+ *  - 学校库：6 主线 × 7 档（S/A/B/C/D/E/F）+ 神校彩蛋
+ *  - 寄语：按主线×档位组合，保证不千人一面
+ * =========================================================== */
 
 // 省份列表
 var PROVINCES = [
@@ -611,9 +745,7 @@ var PROVINCES = [
 var YEARS = [];
 for (var y = 2025; y >= 2000; y--) YEARS.push(y);
 
-// 简化版等位折算参数（按省份给出年度平均差异系数，简化使用）
-// 实际项目应调用位次对照 API；此处为 H5 demo 使用的近似公式
-// 逻辑：2026 等效分 ≈ 原始分 + (2026 - year) * 系数 + 省份偏移
+// 省份折算偏移
 var PROV_OFFSET = {
   "北京": 8, "上海": 10, "天津": 5, "江苏": 12, "浙江": 10,
   "广东": 14, "山东": 15, "河南": 18, "河北": 15, "安徽": 13,
@@ -623,308 +755,942 @@ var PROV_OFFSET = {
   "西藏": 2, "云南": 9, "贵州": 9, "广西": 10, "海南": 6, "重庆": 10
 };
 
-// 12 道 Chatbot 题目
-var QUESTIONS = [
-  {
-    id: 1,
-    dim: "ability",
-    ai: "Hi，重启一下你的 18 岁。先从你的手机开始——你的屏幕使用时间报告里，哪一类 App 用得最多？",
-    options: [
-      { t: "知乎、小红书、公众号 —— 爱看人家写字", tag: "text" },
-      { t: "B 站、抖音、YouTube —— 视频党选手", tag: "visual" },
-      { t: "Excel、笔记、Notion —— 整理控魔怔人", tag: "logic" },
-      { t: "游戏、剪辑、摄影修图 —— 创造型选手", tag: "creative" },
-      { t: "朋友圈、微信、小红书 —— 社交观察员", tag: "social" }
-    ]
-  },
-  {
-    id: 2,
-    dim: "ability",
-    ai: "看到一则新闻：『某公司用 AI 取代了一半员工』，你的第一反应是？",
-    options: [
-      { t: "立刻搜『它是怎么做到的』，想看技术方案", tag: "engineer" },
-      { t: "开始深入查行业报告，想弄懂背后逻辑", tag: "academic" },
-      { t: "琢磨『那人类到底还剩下什么价值』", tag: "philo" },
-      { t: "马上想：『我该怎么用 AI 也提升自己效率』", tag: "hacker" },
-      { t: "转发到群里，看看朋友们怎么看", tag: "chill" }
-    ]
-  },
-  {
-    id: 3,
-    dim: "ability",
-    ai: "朋友过生日要办 Party，大家默认你负责哪一块？",
-    options: [
-      { t: "挑餐厅、订场地、算人头——总管型", tag: "pm" },
-      { t: "策划主题、做氛围、拍照打卡——创意总监", tag: "creative" },
-      { t: "拍视频、修图、做九宫格——记录达人", tag: "content" },
-      { t: "点菜、选酒、把控节奏——体验官", tag: "taste" },
-      { t: "人在，饭在，啥也不操心——氛围组", tag: "chill" }
-    ]
-  },
-  {
-    id: 4,
-    dim: "personality",
-    ai: "加入了一个新社团，自我介绍环节，真实的你是？",
-    options: [
-      { t: "主动举手第一个上，段子都想好了", tag: "E++" },
-      { t: "坐中间，不急不忙，该说就说", tag: "E" },
-      { t: "往后坐，轮到谁是谁的事", tag: "M" },
-      { t: "悄悄打量每个人，默默观察", tag: "I" },
-      { t: "内心崩溃，已经开始想怎么请假", tag: "I++" }
-    ]
-  },
-  {
-    id: 5,
-    dim: "personality",
-    ai: "临近 Deadline 的那一晚，真实的你是？",
-    options: [
-      { t: "早就做完了在看剧", tag: "perfect" },
-      { t: "按计划有条不紊推进", tag: "steady" },
-      { t: "临近 DDL 但灵感爆发，超常发挥", tag: "inspire" },
-      { t: "一边焦虑一边疯狂冲刺", tag: "pressure" },
-      { t: "求菩萨保佑延期", tag: "chill" }
-    ]
-  },
-  {
-    id: 6,
-    dim: "personality",
-    ai: "闺蜜和朋友吵架了两边都找你倾诉，你会？",
-    options: [
-      { t: "理性分析，给双方摆事实", tag: "rational" },
-      { t: "先接住情绪，让大家冷静", tag: "empathy" },
-      { t: "谁更难过帮谁，另一个慢慢劝", tag: "emotion" },
-      { t: "装傻充愣，谁都不得罪", tag: "smooth" },
-      { t: "把俩人拉到一起直接对线", tag: "action" }
-    ]
-  },
-  {
-    id: 7,
-    dim: "family",
-    ai: "小时候家里人聊起「学什么好」，最常说的那句话是？",
-    options: [
-      { t: "「学这个，将来好找工作 / 稳定」", tag: "stable" },
-      { t: "「学费别太贵，咱家供不起太烧钱的」", tag: "budget" },
-      { t: "「学你喜欢的，爸妈支持」", tag: "open" },
-      { t: "「学这个，咱家有人能帮你」", tag: "network" },
-      { t: "「随便，反正不是我读书」", tag: "free" }
-    ]
-  },
-  {
-    id: 8,
-    dim: "family",
-    ai: "假设你刚工作月薪 1 万，你会怎么分配？",
-    options: [
-      { t: "50% 存起来，剩下的才是生活", tag: "saver" },
-      { t: "大部分花掉，年轻就得生活质量", tag: "enjoy" },
-      { t: "全部拿去投资、搞副业", tag: "risk" },
-      { t: "先还花呗……", tag: "balance" },
-      { t: "立马转给爸妈一部分", tag: "family" }
-    ]
-  },
-  {
-    id: 9,
-    dim: "family",
-    ai: "工作 10 年后的某个周六早上 10 点，你希望自己在哪？",
-    options: [
-      { t: "北上广深的公寓，打开咖啡机准备去加班", tag: "tier1" },
-      { t: "新一线的家里，阳光很好，去公园散步", tag: "tier2" },
-      { t: "县城老家，带娃在小区遛弯", tag: "home" },
-      { t: "欧洲某个小镇，刚从民宿醒来", tag: "nomad" },
-      { t: "工作室里熬夜，在做自己喜欢的项目", tag: "passion" }
-    ]
-  },
-  {
-    id: 10,
-    dim: "interest",
-    ai: "Netflix 打开，你会在哪个分类停留最久？",
-    options: [
-      { t: "纪录片（历史、科学、社会）", tag: "humanities" },
-      { t: "剧情 / 文艺片（电影节那种）", tag: "art" },
-      { t: "犯罪悬疑（刑侦、法医）", tag: "law" },
-      { t: "科幻未来（星际、AI、未来城市）", tag: "tech" },
-      { t: "综艺真人秀（社交观察）", tag: "media" },
-      { t: "动画番剧（二次元、漫画）", tag: "design" }
-    ]
-  },
-  {
-    id: 11,
-    dim: "interest",
-    ai: "你想让全世界关注一件很重要的事，你会选哪种方式？",
-    options: [
-      { t: "写一篇扎实的深度报道", tag: "media" },
-      { t: "拍一支短片 / 纪录片", tag: "film" },
-      { t: "做一个 App / 产品来解决", tag: "engineer" },
-      { t: "办一场展览 / 活动", tag: "art" },
-      { t: "直接上街演讲 / 做志愿者", tag: "public" },
-      { t: "发明一项新技术 / 做科研", tag: "science" }
-    ]
-  },
-  {
-    id: 12,
-    dim: "value",
-    ai: "最后一道：下面这些，你愿意牺牲哪一个来换另一个？",
-    options: [
-      { t: "愿意牺牲「自由」换「稳定」", tag: "stable" },
-      { t: "愿意牺牲「高收入」换「意义感」", tag: "idealist" },
-      { t: "愿意牺牲「名校光环」换「专业对口」", tag: "pro" },
-      { t: "愿意牺牲「家人期待」换「自我实现」", tag: "self" },
-      { t: "愿意牺牲「安稳」换「高风险高回报」", tag: "risk" }
-    ]
-  }
-];
+/* ============ Q1 + Q2 固定前置题 ============ */
 
-// 学校库：兴趣大类 + 学校 + 适配专业 + 理由
-// 覆盖 Top 200 + 特色神校
-var SCHOOLS = {
-  // ============ 计算机/技术类 ============
-  tech: [
-    { name: "清华大学", major: "计算机科学与技术", reason: "代码的海洋里，你本该乘风破浪" },
-    { name: "北京大学", major: "人工智能", reason: "你的理性和脑洞，该被世界级的 AI 实验室接住" },
-    { name: "上海交通大学", major: "电子信息工程", reason: "工程师的浪漫，在黄浦江边最合适" },
-    { name: "浙江大学", major: "软件工程", reason: "和一群同样疯狂的 Coder，改变一座城" },
-    { name: "华中科技大学", major: "人工智能", reason: "光谷的代码风，吹得正好" },
-    { name: "电子科技大学", major: "集成电路设计", reason: "成都的慢生活+芯片的硬核，混搭上头" },
-    { name: "中国科学技术大学", major: "计算机科学", reason: "合肥这座低调的 AI 之城，配得上你" },
-    { name: "南京大学", major: "人工智能", reason: "AI + 人文精神，在这里不冲突" },
-    { name: "国防科技大学", major: "指挥信息系统", reason: "不是所有人都能进的特色神校，你刚好合适" }
-  ],
-  // ============ 人文社科 ============
-  humanities: [
-    { name: "复旦大学", major: "新闻学", reason: "文字是你看世界的方式，复旦给你最大的舞台" },
-    { name: "北京大学", major: "中国语言文学", reason: "燕园的银杏下，你本应读很多书" },
-    { name: "中国人民大学", major: "社会学", reason: "你对人和社会的敏感，早该被专业训练" },
-    { name: "武汉大学", major: "历史学", reason: "珞珈山樱花下读春秋，本该是你的日常" },
-    { name: "南京大学", major: "哲学", reason: "思辨型选手，六朝古都给你最好的滋养" },
-    { name: "华东师范大学", major: "汉语言文学", reason: "文艺+师范+上海，全都对你很合适" }
-  ],
-  // ============ 商科/管理/经济 ============
-  finance: [
-    { name: "上海财经大学", major: "金融学", reason: "陆家嘴的玻璃幕墙里，本该有你的座位" },
-    { name: "中央财经大学", major: "会计学", reason: "北京金融街的数字节奏，和你的理性完美匹配" },
-    { name: "对外经济贸易大学", major: "国际经济与贸易", reason: "你的全球化视野，在这里被接住" },
-    { name: "清华大学", major: "经济与金融", reason: "五道口的血脉觉醒，就是你的天赋舞台" },
-    { name: "复旦大学", major: "管理学", reason: "管理+视野+上海的节奏，你本该在这里发光" }
-  ],
-  // ============ 艺术/设计 ============
-  art: [
-    { name: "中央美术学院", major: "视觉传达设计", reason: "你的审美天赋，本该在央美被打磨" },
-    { name: "中国美术学院", major: "跨媒体艺术", reason: "杭州西湖边的艺术家生活，属于你" },
-    { name: "北京电影学院", major: "导演", reason: "你拍的每一张朋友圈照片，都该被更大的屏幕看到" },
-    { name: "中央戏剧学院", major: "戏剧影视文学", reason: "你心里的故事，值得一个舞台" },
-    { name: "清华大学", major: "美术学（清华美院）", reason: "艺术 + 清华品牌光环，高低配完美" }
-  ],
-  // ============ 影视/传媒 ============
-  media: [
-    { name: "中国传媒大学", major: "播音与主持艺术", reason: "镜头前，你本该自带光" },
-    { name: "复旦大学", major: "广播电视学", reason: "新闻理想+魔都平台，你会爱上这里" },
-    { name: "中国人民大学", major: "传播学", reason: "你讲故事的能力，该被专业放大" },
-    { name: "上海戏剧学院", major: "戏剧影视文学", reason: "你心里的剧本，该被写出来" }
-  ],
-  // ============ 法学 ============
-  law: [
-    { name: "中国政法大学", major: "法学", reason: "你对公平与秩序的敏感，这里最懂你" },
-    { name: "中国人民大学", major: "法学", reason: "京城顶尖法学院，你的缜密逻辑配得上" },
-    { name: "华东政法大学", major: "法学", reason: "上海律所林立，实习机会近在咫尺" },
-    { name: "西南政法大学", major: "法学", reason: "法学黄埔军校，低调但硬核，适合你" }
-  ],
-  // ============ 医学 ============
-  medicine: [
-    { name: "北京协和医学院", major: "临床医学", reason: "国内最顶的医学殿堂，你的严谨值得这里" },
-    { name: "上海交通大学医学院", major: "临床医学", reason: "瑞金仁济的临床资源，是你的起跳板" },
-    { name: "中山大学", major: "法医学", reason: "你对真相的执念，犯罪悬疑片成真版" },
-    { name: "首都医科大学", major: "口腔医学", reason: "低调高分的医学强校，你会走得很稳" }
-  ],
-  // ============ 师范 / 公共服务 ============
-  public: [
-    { name: "北京师范大学", major: "教育学", reason: "你的耐心和共情力，本该影响下一代" },
-    { name: "华东师范大学", major: "心理学", reason: "你读懂别人情绪的天赋，这里有专业训练" },
-    { name: "东北师范大学", major: "汉语言文学（师范）", reason: "东北师大的师范底蕴，一生一张稳稳的名片" },
-    { name: "厦门大学", major: "公共管理", reason: "看海的海景校园里，想清楚如何服务社会" }
-  ],
-  // ============ 小众特色神校 / 垂直爆款 ============
-  special: [
-    { name: "上海纽约大学", major: "互动媒体艺术", reason: "中美双校长训练营，你的混合底色正对口" },
-    { name: "南方科技大学", major: "计算机科学与技术", reason: "深圳新锐名校，节奏快得配得上你的冒险心" },
-    { name: "西湖大学", major: "生命科学", reason: "研究型的你，西湖大学会让你一见钟情" },
-    { name: "中国美术学院", major: "动画（游戏方向）", reason: "你的二次元世界，该被专业打磨" },
-    { name: "中国音乐学院", major: "音乐学", reason: "别再只在耳机里听了，让音乐成为职业" },
-    { name: "北京舞蹈学院", major: "舞蹈编导", reason: "如果当年有人鼓励你跳舞，你会走这条路" },
-    { name: "国防科技大学", major: "软件工程", reason: "极少数人能进的神校，你刚好合适" }
+var Q1 = {
+  id: 'q1',
+  ai: "你今天发现了一个从没用过的 App，你会——",
+  options: [
+    { t: "先翻设置，看看能改成什么样", route: "tech" },
+    { t: "先看评论区和攻略，搞懂别人怎么玩", route: "humanities" },
+    { t: "随便点点，哪个好看点哪个", route: "art" },
+    { t: "看它怎么赚钱、有没有羊毛可薅", route: "business" },
+    { t: "发群里问：谁用过，值不值下？", route: "service" },
+    { t: "先把它关了——不如出门跑两圈", route: "body" }
   ]
 };
 
-// 人设标签池
-var PERSONA_POOL = {
-  // 根据 ability + personality + value 拼装
-  text: { label: "文字叙事型", flavor: "笔锋比嘴快" },
-  visual: { label: "视觉敏锐型", flavor: "对画面有种执念" },
-  logic: { label: "逻辑整理型", flavor: "看到乱的就想理顺" },
-  creative: { label: "创造发光型", flavor: "总能无中生有" },
-  social: { label: "社交洞察型", flavor: "人性小观察家" }
+var Q2 = {
+  id: 'q2',
+  ai: "上一次你为了一件事废寝忘食，是什么样的场景？",
+  options: [
+    { t: "一个人关起门，扎进去的那种", tag: "solo" },
+    { t: "和一群人脑暴、互相接梗的那种", tag: "team" },
+    { t: "站在人前讲、演、比赛的那种", tag: "stage" },
+    { t: "一个人扛着一件难事往前冲的那种", tag: "grit" },
+    { t: "认真想了想，最近好像没有", tag: "slow" }
+  ]
 };
 
-// 人设寄语池（根据主要 tag 组合）
+/* ============ 6 条主线 × 6 道分支题 ============ */
+
+var BRANCHES = {
+  /* ====== 主线 A：理工 ====== */
+  tech: [
+    {
+      ai: "看到一个 Bug，你心里的第一句话更像——",
+      options: [
+        { t: "到底哪里错了，我必须找出来", tag: "engineer" },
+        { t: "这让我想到另一种思考方式", tag: "science" },
+        { t: "有没有更巧的路绕开它？", tag: "hacker" },
+        { t: "先交给别人吧，我想不动了", tag: "chill" }
+      ]
+    },
+    {
+      ai: "如果给你一整块空白时间，你更想——",
+      options: [
+        { t: "搭一个自己想用的小工具", tag: "builder" },
+        { t: "把一个复杂问题彻底搞懂", tag: "researcher" },
+        { t: "拆一个现成产品，看它怎么做的", tag: "tinker" },
+        { t: "先躺会儿再说", tag: "chill" }
+      ]
+    },
+    {
+      ai: "你更容易被哪种人吸引？",
+      options: [
+        { t: "能用技术解决现实问题的那种", tag: "pragmatic" },
+        { t: "对一个领域有真正深度的那种", tag: "deep" },
+        { t: "脑洞大、总有新想法的那种", tag: "creative_tech" },
+        { t: "动手快、说干就干的那种", tag: "maker" }
+      ]
+    },
+    {
+      ai: "面对一份说明书，你会——",
+      options: [
+        { t: "通读一遍，了解原理", tag: "systematic" },
+        { t: "直接上手，卡住再查", tag: "practical" },
+        { t: "看看目录，找感兴趣的章节", tag: "selective" },
+        { t: "扔一边，自己摸索", tag: "intuitive" }
+      ]
+    },
+    {
+      ai: "你更想做哪种东西？",
+      options: [
+        { t: "能被很多人用到的软件 / 产品", tag: "product" },
+        { t: "推动学科前进的一点点研究", tag: "academic" },
+        { t: "解决具体难题的硬件 / 系统", tag: "engineering" },
+        { t: "好看、好玩的交互作品", tag: "creative_tech" }
+      ]
+    },
+    {
+      ai: "以下场景，哪个最让你兴奋？",
+      options: [
+        { t: "半夜三点调通一行代码", tag: "coder" },
+        { t: "在白板前推导出一个结论", tag: "theorist" },
+        { t: "看自己做的机器真的跑起来", tag: "maker" },
+        { t: "和团队一起 launch 一个产品", tag: "pm" }
+      ]
+    }
+  ],
+
+  /* ====== 主线 B：人文 ====== */
+  humanities: [
+    {
+      ai: "你刷到一条新闻，更容易停下来看的是——",
+      options: [
+        { t: "一个普通人的完整故事", tag: "narrative" },
+        { t: "一段重要历史的来龙去脉", tag: "history" },
+        { t: "一个社会现象的深度分析", tag: "analyst" },
+        { t: "一场有争议的法律判决", tag: "law" }
+      ]
+    },
+    {
+      ai: "朋友倾诉情绪时，你更像——",
+      options: [
+        { t: "耐心听完的那个", tag: "empathy" },
+        { t: "帮对方理清思路的那个", tag: "rational" },
+        { t: "能讲出一句戳中他的话的那个", tag: "verbal" },
+        { t: "悄悄陪着、不说太多的那个", tag: "quiet" }
+      ]
+    },
+    {
+      ai: "你更愿意花时间研究的是——",
+      options: [
+        { t: "一个作家 / 导演背后的完整世界观", tag: "literature" },
+        { t: "一个国家 / 民族的兴衰轨迹", tag: "history" },
+        { t: "某种社会现象为什么会发生", tag: "sociology" },
+        { t: "一个哲学问题到底怎么回答", tag: "philosophy" }
+      ]
+    },
+    {
+      ai: "读过一本好书之后，你第一反应是——",
+      options: [
+        { t: "写点什么记下来", tag: "writer" },
+        { t: "找人讨论这本书", tag: "speaker" },
+        { t: "去找作者其他作品", tag: "reader" },
+        { t: "让它在心里多待一会儿", tag: "inner" }
+      ]
+    },
+    {
+      ai: "你更喜欢哪种『表达方式』——",
+      options: [
+        { t: "把一件事写透", tag: "journalist" },
+        { t: "把一个观点辩明白", tag: "advocate" },
+        { t: "把一段情感拍出来 / 演出来", tag: "media" },
+        { t: "把一段历史整理清楚", tag: "historian" }
+      ]
+    },
+    {
+      ai: "下面哪种人设最像你？",
+      options: [
+        { t: "永远在记录和观察", tag: "recorder" },
+        { t: "对公平与秩序敏感", tag: "law" },
+        { t: "喜欢跨领域的联想", tag: "cross" },
+        { t: "对人本身最感兴趣", tag: "humanist" }
+      ]
+    }
+  ],
+
+  /* ====== 主线 C：艺术 ====== */
+  art: [
+    {
+      ai: "走进一家店，最先吸引你的是——",
+      options: [
+        { t: "它的招牌和门面设计", tag: "visual" },
+        { t: "它的氛围和灯光配乐", tag: "ambient" },
+        { t: "它的产品摆放和质感", tag: "craft" },
+        { t: "它里面的人穿什么", tag: "fashion" }
+      ]
+    },
+    {
+      ai: "你拍照 / 发朋友圈时更在意——",
+      options: [
+        { t: "画面里的颜色搭配", tag: "color" },
+        { t: "光影和构图", tag: "composition" },
+        { t: "配的文字和调性", tag: "style" },
+        { t: "故事感和细节", tag: "story" }
+      ]
+    },
+    {
+      ai: "你更想做哪一种创作？",
+      options: [
+        { t: "画出来、设计出来的那种", tag: "design" },
+        { t: "写出来、拍出来的那种", tag: "film" },
+        { t: "弹出来、唱出来的那种", tag: "music" },
+        { t: "做出来、能摸到的那种", tag: "craft" }
+      ]
+    },
+    {
+      ai: "你更喜欢哪种观众反应？",
+      options: [
+        { t: "哇，好看！", tag: "visual_first" },
+        { t: "这也太有故事了", tag: "narrative" },
+        { t: "这是我做过的情绪", tag: "emotional" },
+        { t: "没见过这种", tag: "original" }
+      ]
+    },
+    {
+      ai: "做艺术类工作，你更能接受的状态是——",
+      options: [
+        { t: "独自创作，完成后给大家看", tag: "solo" },
+        { t: "和一个团队一起完成一个大项目", tag: "team" },
+        { t: "上台表演、现场互动", tag: "stage" },
+        { t: "混在一群懂行的人里互相刺激", tag: "scene" }
+      ]
+    },
+    {
+      ai: "下列哪个最接近你的审美取向？",
+      options: [
+        { t: "干净、极简、有呼吸感", tag: "minimal" },
+        { t: "复杂、繁盛、信息量大", tag: "maximal" },
+        { t: "复古、有时间感", tag: "retro" },
+        { t: "先锋、没见过的那种", tag: "avant" }
+      ]
+    }
+  ],
+
+  /* ====== 主线 D：商业 ====== */
+  business: [
+    {
+      ai: "看到一家网红店排长队，你第一反应是——",
+      options: [
+        { t: "它的商业模式到底是什么？", tag: "model" },
+        { t: "这批客户是什么画像？", tag: "marketing" },
+        { t: "下一个风口会在哪？", tag: "trend" },
+        { t: "先买了再说，吃完发朋友圈", tag: "consumer" }
+      ]
+    },
+    {
+      ai: "你更擅长哪种事？",
+      options: [
+        { t: "把数字和信息理得清清楚楚", tag: "analyst" },
+        { t: "把一个想法讲到别人愿意买单", tag: "sales" },
+        { t: "把一件事从 0 推到 1", tag: "operator" },
+        { t: "在一群人里发现可以合作的人", tag: "connector" }
+      ]
+    },
+    {
+      ai: "你更想参与的是——",
+      options: [
+        { t: "管理一笔资本、让它变得更多", tag: "finance" },
+        { t: "经营一家公司 / 一个团队", tag: "management" },
+        { t: "谈一笔关键的合作", tag: "deal" },
+        { t: "创造一个从无到有的品牌", tag: "founder" }
+      ]
+    },
+    {
+      ai: "下面哪种压力你相对扛得住？",
+      options: [
+        { t: "数字层面的压力（业绩、KPI）", tag: "kpi" },
+        { t: "人际层面的压力（协调、博弈）", tag: "people" },
+        { t: "时间层面的压力（DDL、节奏）", tag: "pace" },
+        { t: "不确定性的压力（方向、决策）", tag: "uncertainty" }
+      ]
+    },
+    {
+      ai: "让你选一个标签，你更想被叫做——",
+      options: [
+        { t: "会算账的聪明人", tag: "finance" },
+        { t: "会谈事的生意人", tag: "dealmaker" },
+        { t: "会经营的管理者", tag: "leader" },
+        { t: "会出点子的操盘手", tag: "strategist" }
+      ]
+    },
+    {
+      ai: "以下哪个场景让你最兴奋？",
+      options: [
+        { t: "一笔投资押对了", tag: "investor" },
+        { t: "一个产品卖爆了", tag: "marketer" },
+        { t: "一个团队拧成一股绳", tag: "leader" },
+        { t: "谈成了一个关键客户", tag: "sales" }
+      ]
+    }
+  ],
+
+  /* ====== 主线 E：服务（教育/心理/公共） ====== */
+  service: [
+    {
+      ai: "身边有人遇到难处，你更常做的是——",
+      options: [
+        { t: "认真听完，再帮他理清楚", tag: "counselor" },
+        { t: "给他一个具体的建议和行动", tag: "coach" },
+        { t: "默默帮他处理一些杂事", tag: "helper" },
+        { t: "把他拉进一个能帮到的圈子", tag: "connector" }
+      ]
+    },
+    {
+      ai: "你更喜欢哪种工作成就感？",
+      options: [
+        { t: "看到一个人因为你而改变", tag: "educator" },
+        { t: "让一群人能更好地生活", tag: "public" },
+        { t: "组织起一件原本没人做的事", tag: "organizer" },
+        { t: "让一段关系里的两方都好受", tag: "mediator" }
+      ]
+    },
+    {
+      ai: "面对别人的情绪，你通常是——",
+      options: [
+        { t: "能敏感地察觉到", tag: "perceiver" },
+        { t: "能稳稳地接住", tag: "anchor" },
+        { t: "会被影响但努力保持清醒", tag: "empath" },
+        { t: "希望保持距离但又忍不住关心", tag: "careful" }
+      ]
+    },
+    {
+      ai: "哪种场景最符合你的节奏？",
+      options: [
+        { t: "和孩子 / 学生打交道", tag: "teacher" },
+        { t: "和来访者 / 病人打交道", tag: "clinical" },
+        { t: "和社区 / 公共事务打交道", tag: "public" },
+        { t: "和组织 / 机构打交道", tag: "ngo" }
+      ]
+    },
+    {
+      ai: "你觉得自己更擅长哪种表达？",
+      options: [
+        { t: "把复杂的事讲清楚", tag: "teacher" },
+        { t: "让紧张的人放松下来", tag: "counselor" },
+        { t: "把一群人动员起来", tag: "organizer" },
+        { t: "让对立的双方谈下去", tag: "mediator" }
+      ]
+    },
+    {
+      ai: "下面哪种『被需要』最让你踏实？",
+      options: [
+        { t: "被当成『值得信任的那个人』", tag: "trusted" },
+        { t: "被当成『能解决问题的人』", tag: "solver" },
+        { t: "被当成『懂我的人』", tag: "ally" },
+        { t: "被当成『可以托付的人』", tag: "reliable" }
+      ]
+    }
+  ],
+
+  /* ====== 主线 F：身体/运动/医学/军警 ====== */
+  body: [
+    {
+      ai: "以下几种状态，哪一个你最受不了？",
+      options: [
+        { t: "一整天坐着不动", tag: "active" },
+        { t: "一件事没个清楚的结果", tag: "disciplined" },
+        { t: "看人痛苦却帮不上忙", tag: "healer" },
+        { t: "身边一团乱没人管", tag: "guardian" }
+      ]
+    },
+    {
+      ai: "运动 / 户外的时候，你更享受——",
+      options: [
+        { t: "一个人稳稳跑下去的专注", tag: "solo_athlete" },
+        { t: "和队友一起赢一场的感觉", tag: "team_sport" },
+        { t: "挑战极限那一下的痛快", tag: "extreme" },
+        { t: "走山路、看风景的慢节奏", tag: "outdoor" }
+      ]
+    },
+    {
+      ai: "你更向往哪种工作环境？",
+      options: [
+        { t: "医院 / 诊所里帮人把身体修好", tag: "medical" },
+        { t: "操场 / 训练场上把身体练好", tag: "sports" },
+        { t: "户外 / 一线把秩序维护好", tag: "security" },
+        { t: "救援 / 急救现场把生命救回来", tag: "rescue" }
+      ]
+    },
+    {
+      ai: "下面哪种『能力』你最想拥有？",
+      options: [
+        { t: "在高强度下依然能冷静判断", tag: "calm" },
+        { t: "面对身体极限还能多扛一下", tag: "resilient" },
+        { t: "看一眼就能发现问题的敏锐", tag: "observant" },
+        { t: "能让伤痛的人放松下来的手感", tag: "healer" }
+      ]
+    },
+    {
+      ai: "哪种『规律』让你觉得踏实？",
+      options: [
+        { t: "每天打卡、日拱一卒", tag: "routine" },
+        { t: "有清晰的目标和训练计划", tag: "goal" },
+        { t: "有规矩、有纪律、有队伍", tag: "discipline" },
+        { t: "有使命感、有救人/助人的意义", tag: "mission" }
+      ]
+    },
+    {
+      ai: "以下场景哪个最接近你理想的一天？",
+      options: [
+        { t: "清晨训练 / 比赛 / 健身", tag: "sports" },
+        { t: "早查房 / 手术 / 问诊", tag: "medical" },
+        { t: "执勤 / 巡逻 / 指挥调度", tag: "security" },
+        { t: "野外 / 荒野 / 远征", tag: "adventure" }
+      ]
+    }
+  ]
+};
+
+/* ============ 分档学校库 ============ */
+/*  SCHOOLS[主线][档位] = [{name, major, reason?}, ...]
+ *  档位：S 680+ / A 640-679 / B 600-639 / C 560-599 / D 500-559 / E 450-499 / F <450
+ * ===================================================================== */
+
+var SCHOOLS = {
+  /* ================= 主线 A：理工 ================= */
+  tech: {
+    S: [
+      { name: "清华大学", major: "计算机科学与技术" },
+      { name: "北京大学", major: "人工智能" },
+      { name: "上海交通大学", major: "电子信息工程" },
+      { name: "中国科学技术大学", major: "计算机科学" }
+    ],
+    A: [
+      { name: "浙江大学", major: "软件工程" },
+      { name: "南京大学", major: "人工智能" },
+      { name: "华中科技大学", major: "人工智能" },
+      { name: "复旦大学", major: "数据科学" },
+      { name: "西安交通大学", major: "计算机科学与技术" },
+      { name: "哈尔滨工业大学", major: "计算机科学与技术" },
+      { name: "同济大学", major: "软件工程" },
+      { name: "北京航空航天大学", major: "人工智能" }
+    ],
+    B: [
+      { name: "电子科技大学", major: "集成电路设计" },
+      { name: "北京邮电大学", major: "通信工程" },
+      { name: "东南大学", major: "自动化" },
+      { name: "华南理工大学", major: "计算机科学与技术" },
+      { name: "北京理工大学", major: "电子信息工程" },
+      { name: "西北工业大学", major: "软件工程" },
+      { name: "天津大学", major: "智能制造" },
+      { name: "华东师范大学", major: "计算机科学与技术" },
+      { name: "中国人民大学", major: "信息管理与信息系统" },
+      { name: "中山大学", major: "软件工程" }
+    ],
+    C: [
+      { name: "西安电子科技大学", major: "计算机科学与技术" },
+      { name: "南京邮电大学", major: "通信工程" },
+      { name: "北京交通大学", major: "信息管理" },
+      { name: "哈尔滨工程大学", major: "自动化" },
+      { name: "大连理工大学", major: "软件工程" },
+      { name: "中南大学", major: "自动化" },
+      { name: "重庆大学", major: "通信工程" },
+      { name: "合肥工业大学", major: "计算机" },
+      { name: "武汉理工大学", major: "软件工程" },
+      { name: "北京科技大学", major: "计算机科学与技术" },
+      { name: "南京航空航天大学", major: "自动化" },
+      { name: "华北电力大学", major: "电气工程" }
+    ],
+    D: [
+      { name: "北京工业大学", major: "软件工程" },
+      { name: "上海大学", major: "计算机科学" },
+      { name: "苏州大学", major: "软件工程" },
+      { name: "深圳大学", major: "计算机科学与技术" },
+      { name: "南京工业大学", major: "自动化" },
+      { name: "浙江工业大学", major: "计算机" },
+      { name: "山东大学（威海）", major: "信息工程" },
+      { name: "福州大学", major: "软件工程" },
+      { name: "湘潭大学", major: "计算机" },
+      { name: "广东工业大学", major: "自动化" }
+    ],
+    E: [
+      { name: "杭州电子科技大学", major: "电子信息工程" },
+      { name: "西安邮电大学", major: "通信工程" },
+      { name: "桂林电子科技大学", major: "电子信息工程" },
+      { name: "南京信息工程大学", major: "计算机" },
+      { name: "成都信息工程大学", major: "软件工程" },
+      { name: "重庆邮电大学", major: "通信工程" },
+      { name: "长春理工大学", major: "光电信息" },
+      { name: "沈阳工业大学", major: "电气自动化" },
+      { name: "哈尔滨理工大学", major: "计算机" }
+    ],
+    F: [
+      { name: "深圳职业技术学院", major: "软件技术" },
+      { name: "金华职业技术学院", major: "计算机应用技术" },
+      { name: "北京电子科技职业学院", major: "物联网应用" },
+      { name: "广东轻工职业技术学院", major: "软件技术" },
+      { name: "南京信息职业技术学院", major: "通信技术" },
+      { name: "无锡职业技术学院", major: "数控技术" }
+    ]
+  },
+
+  /* ================= 主线 B：人文 ================= */
+  humanities: {
+    S: [
+      { name: "北京大学", major: "中国语言文学" },
+      { name: "复旦大学", major: "新闻学" },
+      { name: "中国人民大学", major: "社会学" },
+      { name: "南京大学", major: "哲学" }
+    ],
+    A: [
+      { name: "武汉大学", major: "历史学" },
+      { name: "北京师范大学", major: "汉语言文学" },
+      { name: "华东师范大学", major: "汉语言文学" },
+      { name: "中国政法大学", major: "法学" },
+      { name: "中山大学", major: "社会学" },
+      { name: "南开大学", major: "哲学" },
+      { name: "中国传媒大学", major: "新闻学" },
+      { name: "厦门大学", major: "新闻传播" }
+    ],
+    B: [
+      { name: "中央民族大学", major: "民族学" },
+      { name: "西安交通大学", major: "法学" },
+      { name: "四川大学", major: "中国语言文学" },
+      { name: "山东大学", major: "中国语言文学" },
+      { name: "东北师范大学", major: "历史学" },
+      { name: "华中师范大学", major: "汉语言文学" },
+      { name: "西南大学", major: "新闻学" },
+      { name: "华南师范大学", major: "哲学" },
+      { name: "中央财经大学", major: "法学" },
+      { name: "华东政法大学", major: "法学" }
+    ],
+    C: [
+      { name: "西北大学", major: "考古学" },
+      { name: "湖南师范大学", major: "汉语言文学" },
+      { name: "上海外国语大学", major: "新闻学" },
+      { name: "北京外国语大学", major: "国际新闻" },
+      { name: "西南政法大学", major: "法学" },
+      { name: "暨南大学", major: "新闻学" },
+      { name: "中国社会科学院大学", major: "社会学" },
+      { name: "安徽大学", major: "新闻学" },
+      { name: "河南大学", major: "汉语言文学" },
+      { name: "郑州大学", major: "历史学" },
+      { name: "上海政法学院", major: "法学" }
+    ],
+    D: [
+      { name: "首都师范大学", major: "中国语言文学" },
+      { name: "南京师范大学", major: "社会工作" },
+      { name: "黑龙江大学", major: "新闻学" },
+      { name: "浙江工商大学", major: "法学" },
+      { name: "山西大学", major: "哲学" },
+      { name: "广西大学", major: "新闻学" },
+      { name: "贵州大学", major: "历史学" },
+      { name: "云南大学", major: "民族学" },
+      { name: "四川外国语大学", major: "汉语言文学" }
+    ],
+    E: [
+      { name: "沈阳师范大学", major: "汉语言文学" },
+      { name: "辽宁大学", major: "新闻学" },
+      { name: "渤海大学", major: "历史学" },
+      { name: "河北大学", major: "法学" },
+      { name: "吉林师范大学", major: "文化产业管理" },
+      { name: "内蒙古大学", major: "民族学" },
+      { name: "山东师范大学", major: "新闻学" }
+    ],
+    F: [
+      { name: "北京青年政治学院", major: "文秘" },
+      { name: "江苏经贸职业技术学院", major: "新闻采编" },
+      { name: "浙江传媒职业学院", major: "播音主持" },
+      { name: "上海出版印刷高等专科学校", major: "编辑出版" }
+    ]
+  },
+
+  /* ================= 主线 C：艺术 ================= */
+  art: {
+    S: [
+      { name: "中央美术学院", major: "视觉传达设计" },
+      { name: "清华大学美术学院", major: "环境设计" },
+      { name: "中国美术学院", major: "跨媒体艺术" },
+      { name: "北京电影学院", major: "导演" }
+    ],
+    A: [
+      { name: "中央戏剧学院", major: "戏剧影视文学" },
+      { name: "上海戏剧学院", major: "表演" },
+      { name: "中国传媒大学", major: "动画" },
+      { name: "中央音乐学院", major: "作曲" },
+      { name: "上海音乐学院", major: "音乐表演" },
+      { name: "北京舞蹈学院", major: "舞蹈编导" }
+    ],
+    B: [
+      { name: "同济大学", major: "艺术与设计" },
+      { name: "东华大学", major: "服装设计" },
+      { name: "江南大学", major: "产品设计" },
+      { name: "中国戏曲学院", major: "表演" },
+      { name: "南京艺术学院", major: "视觉传达" },
+      { name: "鲁迅美术学院", major: "中国画" },
+      { name: "四川美术学院", major: "油画" },
+      { name: "广州美术学院", major: "工业设计" },
+      { name: "西安美术学院", major: "书法学" }
+    ],
+    C: [
+      { name: "天津美术学院", major: "雕塑" },
+      { name: "湖北美术学院", major: "动画" },
+      { name: "云南艺术学院", major: "影视摄影" },
+      { name: "吉林艺术学院", major: "流行音乐" },
+      { name: "山东艺术学院", major: "戏剧影视" },
+      { name: "广西艺术学院", major: "中国画" },
+      { name: "新疆艺术学院", major: "舞蹈表演" },
+      { name: "北京服装学院", major: "服装设计" },
+      { name: "南京艺术学院（专业方向）", major: "媒体艺术" }
+    ],
+    D: [
+      { name: "浙江传媒学院", major: "播音主持" },
+      { name: "湖南师范大学美术学院", major: "美术学" },
+      { name: "景德镇陶瓷大学", major: "陶瓷艺术" },
+      { name: "杭州师范大学", major: "动画" },
+      { name: "四川音乐学院", major: "音乐教育" },
+      { name: "沈阳音乐学院", major: "流行演唱" },
+      { name: "武汉音乐学院", major: "音乐学" }
+    ],
+    E: [
+      { name: "大连艺术学院", major: "视觉传达" },
+      { name: "河北美术学院", major: "动画" },
+      { name: "北海艺术设计学院", major: "环境设计" },
+      { name: "四川电影电视学院", major: "戏剧影视文学" },
+      { name: "武汉设计工程学院", major: "数字媒体" }
+    ],
+    F: [
+      { name: "上海电影艺术职业学院", major: "影视编导" },
+      { name: "江苏工艺美术职业技术学院", major: "视觉传达" },
+      { name: "浙江艺术职业学院", major: "舞台美术" },
+      { name: "武汉职业技术学院", major: "动漫设计" }
+    ]
+  },
+
+  /* ================= 主线 D：商业 ================= */
+  business: {
+    S: [
+      { name: "清华大学", major: "经济与金融" },
+      { name: "北京大学", major: "工商管理" },
+      { name: "上海财经大学", major: "金融学" },
+      { name: "复旦大学", major: "管理学" }
+    ],
+    A: [
+      { name: "中央财经大学", major: "会计学" },
+      { name: "对外经济贸易大学", major: "国际经济与贸易" },
+      { name: "上海交通大学", major: "金融学" },
+      { name: "浙江大学", major: "工商管理" },
+      { name: "南京大学", major: "管理科学" },
+      { name: "中国人民大学", major: "财政学" },
+      { name: "西南财经大学", major: "金融学" }
+    ],
+    B: [
+      { name: "中南财经政法大学", major: "会计学" },
+      { name: "东北财经大学", major: "财政学" },
+      { name: "江西财经大学", major: "金融学" },
+      { name: "中山大学", major: "工商管理" },
+      { name: "暨南大学", major: "国际经济与贸易" },
+      { name: "厦门大学", major: "会计学" },
+      { name: "北京工商大学", major: "会计学" },
+      { name: "天津财经大学", major: "金融学" },
+      { name: "山东财经大学", major: "财政学" }
+    ],
+    C: [
+      { name: "首都经济贸易大学", major: "财政学" },
+      { name: "上海对外经贸大学", major: "国际贸易" },
+      { name: "浙江工商大学", major: "会计学" },
+      { name: "南京财经大学", major: "金融学" },
+      { name: "河北经贸大学", major: "国际贸易" },
+      { name: "哈尔滨商业大学", major: "市场营销" },
+      { name: "安徽财经大学", major: "会计学" },
+      { name: "广东外语外贸大学", major: "国际经济与贸易" },
+      { name: "湖南工商大学", major: "电子商务" },
+      { name: "云南财经大学", major: "财政学" }
+    ],
+    D: [
+      { name: "山西财经大学", major: "金融学" },
+      { name: "贵州财经大学", major: "会计学" },
+      { name: "内蒙古财经大学", major: "财政学" },
+      { name: "新疆财经大学", major: "国际贸易" },
+      { name: "兰州财经大学", major: "会计学" },
+      { name: "河南财经政法大学", major: "金融学" },
+      { name: "重庆工商大学", major: "会计学" },
+      { name: "沈阳工业大学", major: "工商管理" }
+    ],
+    E: [
+      { name: "广西财经学院", major: "会计学" },
+      { name: "吉林工商学院", major: "物流管理" },
+      { name: "上海商学院", major: "连锁经营" },
+      { name: "宁波财经学院", major: "金融学" },
+      { name: "武汉商学院", major: "市场营销" }
+    ],
+    F: [
+      { name: "浙江金融职业学院", major: "金融服务" },
+      { name: "山东商业职业技术学院", major: "会计" },
+      { name: "北京财贸职业学院", major: "财务会计" },
+      { name: "广东轻工职业技术学院", major: "电子商务" },
+      { name: "深圳职业技术学院", major: "市场营销" }
+    ]
+  },
+
+  /* ================= 主线 E：服务（教育/心理/公共） ================= */
+  service: {
+    S: [
+      { name: "北京师范大学", major: "教育学" },
+      { name: "北京大学", major: "心理学" },
+      { name: "华东师范大学", major: "心理学" }
+    ],
+    A: [
+      { name: "中国人民大学", major: "公共管理" },
+      { name: "华中师范大学", major: "教育学" },
+      { name: "东北师范大学", major: "教育技术学" },
+      { name: "华南师范大学", major: "心理学" },
+      { name: "陕西师范大学", major: "教育学" },
+      { name: "中山大学", major: "社会工作" }
+    ],
+    B: [
+      { name: "西南大学", major: "心理学" },
+      { name: "首都师范大学", major: "学前教育" },
+      { name: "上海师范大学", major: "教育学" },
+      { name: "南京师范大学", major: "教育学" },
+      { name: "浙江师范大学", major: "心理学" },
+      { name: "湖南师范大学", major: "教育学" },
+      { name: "福建师范大学", major: "学前教育" },
+      { name: "山东师范大学", major: "心理学" }
+    ],
+    C: [
+      { name: "天津师范大学", major: "小学教育" },
+      { name: "安徽师范大学", major: "教育学" },
+      { name: "江西师范大学", major: "心理学" },
+      { name: "河南师范大学", major: "教育学" },
+      { name: "辽宁师范大学", major: "学前教育" },
+      { name: "云南师范大学", major: "教育学" },
+      { name: "广西师范大学", major: "心理学" },
+      { name: "西北师范大学", major: "教育学" },
+      { name: "哈尔滨师范大学", major: "小学教育" },
+      { name: "贵州师范大学", major: "教育学" }
+    ],
+    D: [
+      { name: "沈阳师范大学", major: "学前教育" },
+      { name: "青海师范大学", major: "小学教育" },
+      { name: "宁夏师范学院", major: "学前教育" },
+      { name: "吉林师范大学", major: "教育学" },
+      { name: "鲁东大学", major: "心理学" },
+      { name: "温州大学", major: "小学教育" }
+    ],
+    E: [
+      { name: "内蒙古师范大学", major: "学前教育" },
+      { name: "长春师范大学", major: "小学教育" },
+      { name: "信阳师范学院", major: "教育学" },
+      { name: "临沂大学", major: "小学教育" }
+    ],
+    F: [
+      { name: "北京社会管理职业学院", major: "社会工作" },
+      { name: "泉州幼儿师范高等专科学校", major: "学前教育" },
+      { name: "江苏第二师范学院", major: "小学教育" },
+      { name: "杭州师范大学钱江学院", major: "学前教育" }
+    ]
+  },
+
+  /* ================= 主线 F：身体/运动/医学/军警 ================= */
+  body: {
+    S: [
+      { name: "北京协和医学院", major: "临床医学" },
+      { name: "上海交通大学医学院", major: "临床医学" },
+      { name: "复旦大学上海医学院", major: "基础医学" },
+      { name: "清华大学医学院", major: "临床医学" }
+    ],
+    A: [
+      { name: "浙江大学医学院", major: "临床医学" },
+      { name: "华中科技大学同济医学院", major: "临床医学" },
+      { name: "北京体育大学", major: "运动训练" },
+      { name: "中国人民公安大学", major: "侦查学" },
+      { name: "中山大学中山医学院", major: "临床医学" },
+      { name: "首都医科大学", major: "口腔医学" }
+    ],
+    B: [
+      { name: "上海体育学院", major: "运动康复" },
+      { name: "中国药科大学", major: "药学" },
+      { name: "北京中医药大学", major: "中医学" },
+      { name: "南京医科大学", major: "临床医学" },
+      { name: "南方医科大学", major: "临床医学" },
+      { name: "哈尔滨医科大学", major: "临床医学" },
+      { name: "天津医科大学", major: "口腔医学" },
+      { name: "国防科技大学", major: "指挥信息系统" },
+      { name: "武警工程大学", major: "通信工程" },
+      { name: "中国刑事警察学院", major: "刑事科学技术" }
+    ],
+    C: [
+      { name: "武汉体育学院", major: "运动训练" },
+      { name: "成都体育学院", major: "武术" },
+      { name: "沈阳体育学院", major: "运动康复" },
+      { name: "广州体育学院", major: "体育教育" },
+      { name: "西安体育学院", major: "运动训练" },
+      { name: "广西医科大学", major: "临床医学" },
+      { name: "昆明医科大学", major: "口腔医学" },
+      { name: "安徽医科大学", major: "临床医学" },
+      { name: "温州医科大学", major: "眼视光" },
+      { name: "南京森林警察学院", major: "治安学" }
+    ],
+    D: [
+      { name: "徐州医科大学", major: "麻醉学" },
+      { name: "山西医科大学", major: "临床医学" },
+      { name: "大连医科大学", major: "临床医学" },
+      { name: "河北医科大学", major: "临床医学" },
+      { name: "贵州医科大学", major: "临床医学" },
+      { name: "云南中医药大学", major: "中医学" },
+      { name: "甘肃中医药大学", major: "针灸推拿" },
+      { name: "天津体育学院", major: "民族传统体育" }
+    ],
+    E: [
+      { name: "沈阳药科大学", major: "药学" },
+      { name: "遵义医科大学", major: "麻醉学" },
+      { name: "齐齐哈尔医学院", major: "临床医学" },
+      { name: "长治医学院", major: "临床医学" },
+      { name: "哈尔滨体育学院", major: "运动训练" }
+    ],
+    F: [
+      { name: "北京卫生职业学院", major: "护理" },
+      { name: "天津医学高等专科学校", major: "康复治疗" },
+      { name: "浙江体育职业技术学院", major: "社会体育" },
+      { name: "山东中医药高等专科学校", major: "针灸推拿" },
+      { name: "武汉警官职业学院", major: "刑事侦查" }
+    ]
+  }
+};
+
+/* ============ 神校彩蛋池（低频随机插入备选位） ============ */
+var EASTER_EGGS = [
+  { name: "上海纽约大学", major: "互动媒体艺术", note: "中美联合培养，不走寻常路" },
+  { name: "南方科技大学", major: "基础科学（数学/物理）", note: "深圳新锐研究型大学" },
+  { name: "西湖大学", major: "生命科学", note: "研究导向的新型大学" },
+  { name: "昆山杜克大学", major: "全球健康", note: "中美合作，视野开阔" },
+  { name: "宁波诺丁汉大学", major: "国际商务", note: "英式教育在中国的落点" },
+  { name: "香港中文大学（深圳）", major: "经济学", note: "港校底子 + 深圳地气" },
+  { name: "深圳技术大学", major: "机器人工程", note: "应用型技术新秀" },
+  { name: "中国科学院大学", major: "计算机", note: "科研路线的隐藏王者" }
+];
+
+/* ============ AI 寄语池（按主线 + 档位组合） ============ */
 var QUOTES = {
-  tech: "你本该在代码的海洋里乘风破浪，而不是在 Excel 的格子里发呆。",
-  humanities: "你应该被更多故事滋养，而不是在 KPI 里消耗自己。",
-  finance: "你对数字的直觉，本该让你站在更大的牌桌前。",
-  art: "你眼里的世界有别人看不到的色彩，该被专业训练放大。",
-  media: "你讲故事的天赋，值得一个比朋友圈更大的舞台。",
-  law: "你对公平的较真劲儿，应该被好好安放。",
-  medicine: "你的严谨和耐心，本该救更多人。",
-  public: "你心底那股想帮人的劲儿，不该被消耗在无意义的事上。",
-  special: "你不属于任何主流，但总有一条路专为你而留。"
+  tech: {
+    S: "你当年的每一分，本该带你到最顶尖的实验室里去。",
+    A: "你属于那种，会被好代码和好问题照亮眼睛的人。",
+    B: "工程师的底色已经很明显，只是还差一个对的入口。",
+    C: "你适合的不是最难的那条路，而是最能上手的那条。",
+    D: "技术这条路，不怕慢，就怕方向不对——你的方向其实不差。",
+    E: "真正决定你走多远的，是你愿意动手的那股劲。",
+    F: "技能是硬道理，学一门手艺远比挤独木桥更踏实。"
+  },
+  humanities: {
+    S: "你该被好书、好问题、好老师包围着长大。",
+    A: "你看世界的方式，本该被好好训练。",
+    B: "你对人和故事的敏感，是可以变成职业的。",
+    C: "你适合一条慢的、深的、和文字相关的路。",
+    D: "写字、读书、看人——这些你擅长的事，其实一直有价值。",
+    E: "分数没告诉你的是，你的阅读量和表达欲，是真正稀缺的。",
+    F: "文字和表达是一门长期主义的手艺，不急于一时。"
+  },
+  art: {
+    S: "你的眼睛和耳朵，本该被最好的学院训练。",
+    A: "你天生对美有判断，这件事很多人一辈子都学不会。",
+    B: "你的审美是底气，专业训练会让它更有杀伤力。",
+    C: "美学不是天赋，是积累——你一直在积累。",
+    D: "你适合用作品说话，学历只是让你更早遇到同类。",
+    E: "做艺术的人，耐得住寂寞才是真本事。",
+    F: "手艺不分学历，你做出来的东西会替你开口。"
+  },
+  business: {
+    S: "你对『规则』和『人』的同时敏感，本该在更大的牌桌上。",
+    A: "你的商业直觉比你以为的更可靠。",
+    B: "你擅长在数字和人之间找到平衡，这很稀缺。",
+    C: "商业的门比想象中宽——你能走的路不止一条。",
+    D: "别小看『会算账』和『会说话』的人，这一直是硬通货。",
+    E: "生意不是学出来的，是干出来的，你不缺这股劲。",
+    F: "商业世界最重视的从来不是出身，而是结果。"
+  },
+  service: {
+    S: "你对人的耐心，本该被好好安放。",
+    A: "你适合那些改变会慢慢发生的领域。",
+    B: "能真正帮到别人的人，从来不多——你是其中之一。",
+    C: "教育、心理、公共——这些需要长期主义的事，你扛得住。",
+    D: "你的温度，是这个行业最稀缺的资源。",
+    E: "被你认真对待过的人，都会记得你。",
+    F: "帮人这件事，不看你从哪里来，只看你愿不愿意。"
+  },
+  body: {
+    S: "你的身体和判断力，本该被训练成更锋利的样子。",
+    A: "你适合那种『在一线』、要用身体说话的职业。",
+    B: "纪律感和专注度，是你比很多人多出来的一项天赋。",
+    C: "医生、运动员、警察——你适合那种每天都在发生『真事』的岗位。",
+    D: "你比你想象的更能扛，也更稳得住。",
+    E: "你的路径不是卷学历，而是把一项手艺练到底。",
+    F: "一项可以靠身体和技能吃饭的职业，是最踏实的。"
+  }
 };
 
-// 分数等位折算函数（简化版）
-// examType: 'science' 理科 / 'arts' 文科 / 'new' 新高考
+/* ============ 人设标签池（组合生成） ============ */
+var ENERGY_LABEL = {
+  solo: "深度钻研型", team: "团队加热型", stage: "舞台型",
+  grit: "死磕型", slow: "观察治愈型"
+};
+
+var BRANCH_LABEL = {
+  tech: "理工派",
+  humanities: "人文派",
+  art: "艺术派",
+  business: "商业派",
+  service: "服务派",
+  body: "行动派"
+};
+
+/* ============ 分数等位折算（含类型系数） ============ */
 function convertScore(year, province, score, examType) {
   var diffYears = 2026 - year;
   var provOff = PROV_OFFSET[province] || 8;
-
-  // 高考类型的系数调整：
-  // - 文科：历史同分难度更高，折算时等效分略上调
-  // - 理科：保持标准
-  // - 新高考：满分结构变化，整体偏高，折算时略下调以贴近真实位次
   var typeOff = 0;
-  if (examType === 'arts') typeOff = 8;        // 文科同分更稀缺，加 8 分
-  else if (examType === 'new') typeOff = -6;   // 新高考普遍偏高，减 6 分
-  else typeOff = 0;                            // 理科标准
+  if (examType === 'arts') typeOff = 8;
+  else if (examType === 'new') typeOff = -6;
 
-  // 每年 ~2.8 分通胀 + 省份偏移 + 类型偏移 + 一点随机
   var newScore = Math.round(score + diffYears * 2.8 + provOff * 0.5 + typeOff + (Math.random() * 6 - 3));
   var clamped = Math.max(200, Math.min(750, newScore));
-  // 简化位次：分数越高位次越小
   var rank = Math.max(50, Math.round((750 - clamped) * 260 + 500 + Math.random() * 1000));
   return { newScore: clamped, rank: rank };
 }
 
-// 根据分数范围给一段点评
-function scoreComment(newScore) {
-  if (newScore >= 680) return "卧槽学神，你是不是穿越的？👑";
-  if (newScore >= 640) return "——恭喜你，妥妥的双一流选手 ✨";
-  if (newScore >= 590) return "——挤进 211 梯队，稳";
-  if (newScore >= 540) return "——一本水平，选对专业比选学校更重要";
-  if (newScore >= 480) return "——本科稳稳，专业选择还有很多可能";
-  return "——别急，选对方向比分数更重要";
+/* ============ 分数 → 档位 ============ */
+function scoreToTier(score) {
+  if (score >= 680) return 'S';
+  if (score >= 640) return 'A';
+  if (score >= 600) return 'B';
+  if (score >= 560) return 'C';
+  if (score >= 500) return 'D';
+  if (score >= 450) return 'E';
+  return 'F';
+}
+
+/* ============ 浅幽默分数点评（随档位变化） ============ */
+function scoreComment(score) {
+  if (score >= 680) return "放今年，依然是能稳稳挑学校的分数。";
+  if (score >= 640) return "还是当年那个你——985 梯队不费劲。";
+  if (score >= 600) return "能够得着 211，选专业的空间很大。";
+  if (score >= 560) return "一本上下浮动，专业比学校更决定路口。";
+  if (score >= 500) return "本科稳稳，接下来就看你想走哪条路。";
+  if (score >= 450) return "分数是起点，不是终点。";
+  return "人生有很多种开法，不一定只有这一条。";
 }
 
 </script>
   <script>
-/* ====================== App 主逻辑 ====================== */
+/* ====================== App 主逻辑 · v2 ====================== */
+/* 关键变化：
+ * - QBot 人设开场
+ * - 动态分支：Q1 定主线 → Q2 定能量 → 6 道分支题
+ * - 对话滚动 bug 修复
+ * - 可选称呼输入
+ * - Canvas 生成分享海报（含二维码）
+ * - 结果 CTA：主按钮跳 QB，次按钮生成海报
+ * ============================================================= */
 
-// 全局状态
 var state = {
   year: null,
   province: null,
+  examType: null,
   oldScore: null,
   newScore: null,
   rank: null,
-  answers: [],       // 每题选中的 tag
-  currentQ: 0,       // 当前第几题（从 0 开始）
+  nickname: '',       // 用户称呼（可选）
+  branch: null,       // 主线：tech/humanities/art/business/service/body
+  energy: null,       // 能量模式：solo/team/stage/grit/slow
+  answers: [],        // 所有答案 tag
+  currentQ: 0,        // 0=Q1, 1=Q2, 2~7=分支题 Q3-Q8
+  branchQueue: []     // 当前主线下要问的 6 道题
 };
 
-/* -------- 初始化：填充下拉框 & 事件 -------- */
+/* -------- 初始化下拉框 -------- */
 (function init() {
   var yearSel = document.getElementById('in-year');
   for (var i = 0; i < YEARS.length; i++) {
@@ -943,17 +1709,12 @@ var state = {
 /* -------- 场景切换 -------- */
 function goScene(id) {
   var scenes = document.querySelectorAll('.scene');
-  for (var i = 0; i < scenes.length; i++) {
-    scenes[i].classList.remove('active');
-  }
-  var target = document.getElementById(id);
-  target.classList.add('active');
-  // 强制滚到页面顶部（兼容各种 WebView）
+  for (var i = 0; i < scenes.length; i++) scenes[i].classList.remove('active');
+  document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
   if (document.documentElement) document.documentElement.scrollTop = 0;
   if (document.body) document.body.scrollTop = 0;
 
-  // 特殊场景初始化
   if (id === 'scene-calc') runCalcAnimation();
   if (id === 'scene-chat') startChat();
   if (id === 'scene-result') renderResult();
@@ -966,12 +1727,14 @@ function submitInput(e) {
   var prov = document.getElementById('in-prov').value;
   var type = document.getElementById('in-type').value;
   var score = +document.getElementById('in-score').value;
+  var nick = document.getElementById('in-nick').value.trim();
   if (!year || !prov || !type || !score) return;
 
   state.year = year;
   state.province = prov;
   state.examType = type;
   state.oldScore = score;
+  state.nickname = nick || '你';
   var result = convertScore(year, prov, score, type);
   state.newScore = result.newScore;
   state.rank = result.rank;
@@ -988,19 +1751,10 @@ function runCalcAnimation() {
   oldEl.textContent = '—';
   newEl.textContent = '—';
   btn.classList.add('hidden');
-  btn.style.opacity = 0;
 
-  // 先显示原分
-  setTimeout(function() {
-    animateNumber(oldEl, 0, state.oldScore, 800);
-  }, 300);
+  setTimeout(function() { animateNumber(oldEl, 0, state.oldScore, 800); }, 300);
+  setTimeout(function() { animateNumber(newEl, 0, state.newScore, 1000); }, 1400);
 
-  // 再揭晓新分
-  setTimeout(function() {
-    animateNumber(newEl, 0, state.newScore, 1000);
-  }, 1400);
-
-  // 填充详细文案
   setTimeout(function() {
     document.getElementById('r-year').textContent = state.year;
     document.getElementById('r-prov').textContent = state.province;
@@ -1023,214 +1777,277 @@ function animateNumber(el, from, to, duration) {
   requestAnimationFrame(step);
 }
 
-/* -------- Chatbot 对话 -------- */
+/* -------- Chatbot 对话（动态分支版） -------- */
 function startChat() {
   state.currentQ = 0;
   state.answers = [];
+  state.branch = null;
+  state.energy = null;
+  state.branchQueue = [];
   document.getElementById('chat-body').innerHTML = '';
   document.getElementById('chat-options').innerHTML = '';
-  showQuestion(0);
+
+  // 开场：QBot 自我介绍（2 条气泡）
+  setTimeout(function() {
+    pushAIBubble(
+      "Hi，我是 QBot——你的专属 AI 顾问。",
+      function() {
+        pushAIBubble(
+          "最近正忙着帮人做志愿决策，今天给你来个“番外篇”。",
+          function() {
+            setTimeout(function() { askQ1(); }, 400);
+          }
+        );
+      }
+    );
+  }, 400);
 }
 
-function showQuestion(idx) {
-  var q = QUESTIONS[idx];
+// 统一入口：push 一条带 typing 效果的 AI 气泡，结束后 callback
+function pushAIBubble(text, cb) {
   var body = document.getElementById('chat-body');
-  var opts = document.getElementById('chat-options');
-  document.getElementById('chat-progress').textContent = (idx + 1) + '/12';
-
-  // 先显示 typing
   var typing = document.createElement('div');
   typing.className = 'bubble ai typing';
   body.appendChild(typing);
-  body.scrollTop = body.scrollHeight;
-  opts.innerHTML = '';
+  scrollChatToBottom();
 
   setTimeout(function() {
     typing.remove();
-    // AI 气泡
     var ai = document.createElement('div');
     ai.className = 'bubble ai';
-    ai.textContent = q.ai;
+    ai.textContent = text;
     body.appendChild(ai);
-    body.scrollTop = body.scrollHeight;
-
-    // 渲染选项
-    for (var i = 0; i < q.options.length; i++) {
-      (function(opt, optIdx) {
-        var b = document.createElement('button');
-        b.className = 'option-card';
-        b.textContent = opt.t;
-        b.onclick = function() { selectOption(idx, optIdx, opt); };
-        opts.appendChild(b);
-      })(q.options[i], i);
-    }
+    scrollChatToBottom();
+    if (cb) setTimeout(cb, 350);
   }, 700);
 }
 
-function selectOption(qIdx, optIdx, opt) {
+// 推一条用户气泡
+function pushUserBubble(text) {
   var body = document.getElementById('chat-body');
-  var opts = document.getElementById('chat-options');
-
-  // 记录答案
-  state.answers.push({ dim: QUESTIONS[qIdx].dim, tag: opt.tag });
-
-  // 渲染用户气泡（缩短）
   var me = document.createElement('div');
   me.className = 'bubble me';
-  var shortText = opt.t.split('——')[0].trim();
-  me.textContent = shortText;
+  me.textContent = text;
   body.appendChild(me);
-  body.scrollTop = body.scrollHeight;
+  scrollChatToBottom();
+}
 
-  // 清空选项
-  opts.innerHTML = '';
-
-  // 下一题或跳转结果
-  setTimeout(function() {
-    if (qIdx + 1 < QUESTIONS.length) {
-      showQuestion(qIdx + 1);
-    } else {
-      // 最后一题答完，过渡提示
-      var typing = document.createElement('div');
-      typing.className = 'bubble ai typing';
-      body.appendChild(typing);
+// 滚动到底部（修复 bug：延迟到下一帧，确保 DOM 更新完再滚）
+function scrollChatToBottom() {
+  var body = document.getElementById('chat-body');
+  // 双帧滚动，兼容各种 WebView
+  requestAnimationFrame(function() {
+    body.scrollTop = body.scrollHeight;
+    requestAnimationFrame(function() {
       body.scrollTop = body.scrollHeight;
-
-      setTimeout(function() {
-        typing.remove();
-        var ai = document.createElement('div');
-        ai.className = 'bubble ai';
-        ai.innerHTML = '好了，AI 已经读完你的 12 张牌面。<br />正在为你召唤平行时空的录取通知书……';
-        body.appendChild(ai);
-        body.scrollTop = body.scrollHeight;
-
-        setTimeout(function() { goScene('scene-result'); }, 1500);
-      }, 900);
-    }
-  }, 500);
+    });
+  });
 }
 
-/* -------- 根据答案匹配学校 -------- */
+// 渲染选项卡
+function renderOptions(opts, onSelect) {
+  var box = document.getElementById('chat-options');
+  box.innerHTML = '';
+  for (var i = 0; i < opts.length; i++) {
+    (function(opt) {
+      var btn = document.createElement('button');
+      btn.className = 'option-card';
+      btn.textContent = opt.t;
+      btn.onclick = function() {
+        pushUserBubble(opt.t);
+        box.innerHTML = '';
+        setTimeout(function() { onSelect(opt); }, 400);
+      };
+      box.appendChild(btn);
+    })(opts[i]);
+  }
+}
+
+/* ---- Q1（固定） ---- */
+function askQ1() {
+  updateProgress(1);
+  pushAIBubble(Q1.ai, function() {
+    renderOptions(Q1.options, function(opt) {
+      state.branch = opt.route;
+      state.answers.push({ q: 'q1', tag: opt.route });
+      askQ2();
+    });
+  });
+}
+
+/* ---- Q2（固定） ---- */
+function askQ2() {
+  updateProgress(2);
+  pushAIBubble(Q2.ai, function() {
+    renderOptions(Q2.options, function(opt) {
+      state.energy = opt.tag;
+      state.answers.push({ q: 'q2', tag: opt.tag });
+      // 进入主线分支
+      state.branchQueue = BRANCHES[state.branch].slice(); // 复制一份
+      askBranchQ();
+    });
+  });
+}
+
+/* ---- Q3 - Q8（主线分支） ---- */
+function askBranchQ() {
+  if (state.branchQueue.length === 0) {
+    finishChat();
+    return;
+  }
+  var q = state.branchQueue.shift();
+  var qIndex = 8 - state.branchQueue.length; // 3..8
+  updateProgress(qIndex);
+  pushAIBubble(q.ai, function() {
+    renderOptions(q.options, function(opt) {
+      state.answers.push({ q: 'branch', tag: opt.tag });
+      askBranchQ();
+    });
+  });
+}
+
+function updateProgress(n) {
+  var el = document.getElementById('chat-progress');
+  if (el) el.textContent = n + '/8';
+}
+
+/* ---- 对话结束 ---- */
+function finishChat() {
+  pushAIBubble("好，画像差不多成形了——", function() {
+    pushAIBubble("正在为" + state.nickname + "生成平行时空录取通知书……", function() {
+      setTimeout(function() { goScene('scene-result'); }, 1200);
+    });
+  });
+}
+
+/* -------- 匹配学校 -------- */
 function matchSchools() {
-  // 统计各类 tag 计数
-  var tagCount = {};
-  for (var a = 0; a < state.answers.length; a++) {
-    var tag = state.answers[a].tag;
-    tagCount[tag] = (tagCount[tag] || 0) + 1;
+  var branch = state.branch || 'humanities';
+  var tier = scoreToTier(state.newScore);
+  var pool = (SCHOOLS[branch] && SCHOOLS[branch][tier]) || [];
+
+  // 主角学校：主线+档位池里随机 1 所
+  var main;
+  if (pool.length > 0) {
+    main = pool[Math.floor(Math.random() * pool.length)];
+  } else {
+    main = { name: "综合性大学", major: "适合你的专业" };
   }
 
-  // 兴趣主类别投票
-  var interestVotes = {
-    tech: 0, humanities: 0, finance: 0, art: 0,
-    media: 0, law: 0, medicine: 0, public: 0, special: 0
-  };
-
-  for (var b = 0; b < state.answers.length; b++) {
-    var t = state.answers[b].tag;
-    if (t === 'tech' || t === 'engineer' || t === 'science' || t === 'logic') interestVotes.tech += 2;
-    if (t === 'text' || t === 'humanities' || t === 'philo' || t === 'academic') interestVotes.humanities += 2;
-    if (t === 'finance' || t === 'rational' || t === 'stable' || t === 'saver') interestVotes.finance += 2;
-    if (t === 'art' || t === 'creative' || t === 'design' || t === 'visual' || t === 'film') interestVotes.art += 2;
-    if (t === 'media' || t === 'social' || t === 'content' || t === 'public' || t === 'empathy') interestVotes.media += 2;
-    if (t === 'law' || t === 'rational' || t === 'action') interestVotes.law += 1;
-    if (t === 'medicine' || t === 'perfect' || t === 'steady') interestVotes.medicine += 1;
-    if (t === 'public' || t === 'empathy' || t === 'idealist' || t === 'family') interestVotes.public += 1;
-    if (t === 'nomad' || t === 'passion' || t === 'risk' || t === 'self' || t === 'inspire') interestVotes.special += 1.5;
-  }
-
-  // 取最高 1 个为主角，后 3 个为备选
-  var sorted = Object.entries(interestVotes).sort(function(a, b) { return b[1] - a[1]; });
-  var mainCat = sorted[0][0];
-  var altCats = [];
-  for (var c = 1; c < 4 && c < sorted.length; c++) {
-    altCats.push(sorted[c][0]);
-  }
-
-  // 学校池里随机/按分数挑选
-  var mainPool = SCHOOLS[mainCat] || SCHOOLS.humanities;
-  var mainSchool = pickSchoolByScore(mainPool, state.newScore);
-
+  // 备选 3 所：从"相邻档位"和"相邻主线"取
   var alts = [];
-  for (var d = 0; d < altCats.length; d++) {
-    var pool = SCHOOLS[altCats[d]] || SCHOOLS.humanities;
-    var s = pickSchoolByScore(pool, state.newScore - 20 + Math.random() * 20);
-    s.cat = altCats[d];
-    alts.push(s);
+  var altBranches = pickAltBranches(branch); // 相邻主线
+  var tiers = ['S', 'A', 'B', 'C', 'D', 'E', 'F'];
+  var tierIdx = tiers.indexOf(tier);
+
+  // 第 1 所备选：同档位、相邻主线
+  var b1 = altBranches[0];
+  var p1 = (SCHOOLS[b1] && SCHOOLS[b1][tier]) || [];
+  if (p1.length > 0) {
+    alts.push({
+      cat: b1,
+      name: p1[Math.floor(Math.random() * p1.length)].name,
+      major: p1[Math.floor(Math.random() * p1.length)].major
+    });
   }
 
-  return { mainCat: mainCat, main: mainSchool, alts: alts };
+  // 第 2 所备选：相邻档位、同主线（冲一冲）
+  var rushTier = tiers[Math.max(0, tierIdx - 1)];
+  var p2 = (SCHOOLS[branch] && SCHOOLS[branch][rushTier]) || [];
+  if (p2.length > 0 && rushTier !== tier) {
+    alts.push({
+      cat: branch,
+      name: p2[Math.floor(Math.random() * p2.length)].name,
+      major: p2[Math.floor(Math.random() * p2.length)].major
+    });
+  } else {
+    var b2 = altBranches[1] || altBranches[0];
+    var p2b = (SCHOOLS[b2] && SCHOOLS[b2][tier]) || [];
+    if (p2b.length > 0) {
+      alts.push({
+        cat: b2,
+        name: p2b[Math.floor(Math.random() * p2b.length)].name,
+        major: p2b[Math.floor(Math.random() * p2b.length)].major
+      });
+    }
+  }
+
+  // 第 3 所：10% 概率放神校彩蛋，否则同档位另一主线
+  if (Math.random() < 0.15 && tierIdx <= 3) {
+    var egg = EASTER_EGGS[Math.floor(Math.random() * EASTER_EGGS.length)];
+    alts.push({ cat: 'egg', name: egg.name, major: egg.major, note: egg.note });
+  } else {
+    var b3 = altBranches[1] || altBranches[0];
+    var p3 = (SCHOOLS[b3] && SCHOOLS[b3][tier]) || [];
+    if (p3.length > 0) {
+      alts.push({
+        cat: b3,
+        name: p3[Math.floor(Math.random() * p3.length)].name,
+        major: p3[Math.floor(Math.random() * p3.length)].major
+      });
+    }
+  }
+
+  // 去重：如果 alts 里有和 main 同名的，换一个
+  for (var i = 0; i < alts.length; i++) {
+    if (alts[i].name === main.name && pool.length > 1) {
+      alts[i].name = pool[(Math.floor(Math.random() * pool.length) + 1) % pool.length].name;
+    }
+  }
+
+  return { branch: branch, tier: tier, main: main, alts: alts };
 }
 
-// 按分数段匹配学校（粗粒度）
-function pickSchoolByScore(pool, score) {
-  // 保证结果不空
-  if (!pool || !pool.length) return { name: "综合性大学", major: "某专业", reason: "" };
-  // 高分 → 名校前几个；中分 → 中间；低分 → 后几个
-  var idx;
-  if (score >= 640) idx = Math.floor(Math.random() * Math.min(3, pool.length));
-  else if (score >= 580) idx = Math.floor(Math.random() * pool.length);
-  else idx = Math.max(0, pool.length - 1 - Math.floor(Math.random() * Math.min(3, pool.length)));
-  return pool[idx % pool.length];
+// 根据主线挑 2 个相邻主线作为备选来源
+function pickAltBranches(branch) {
+  var map = {
+    tech: ['business', 'body'],
+    humanities: ['art', 'service'],
+    art: ['humanities', 'service'],
+    business: ['tech', 'humanities'],
+    service: ['humanities', 'body'],
+    body: ['service', 'tech']
+  };
+  return map[branch] || ['humanities', 'tech'];
 }
 
-/* -------- 生成人设标签 -------- */
+/* -------- 人设标签 -------- */
 function generatePersona() {
-  var tagCount = {};
-  for (var i = 0; i < state.answers.length; i++) {
-    var t = state.answers[i].tag;
-    tagCount[t] = (tagCount[t] || 0) + 1;
-  }
-
-  // 核心标签：i/e 人 + 理性/感性 + 价值观
-  var social = "平衡";
-  if (tagCount["I++"] || tagCount["I"]) social = "i 人";
-  if (tagCount["E++"] || tagCount["E"]) social = "E 人";
-
-  var worker = "务实派";
-  if (tagCount.perfect || tagCount.steady) worker = "卷王";
-  else if (tagCount.chill) worker = "松弛感";
-  else if (tagCount.inspire || tagCount.pressure) worker = "灵感型";
-
-  var value = "务实型";
-  if (tagCount.idealist || tagCount.passion) value = "理想型";
-  else if (tagCount.risk || tagCount.nomad) value = "冒险型";
-  else if (tagCount.stable || tagCount.saver) value = "稳定型";
-  else if (tagCount.pro || tagCount.self) value = "独立型";
-
-  return social + worker + " · " + value;
+  var b = BRANCH_LABEL[state.branch] || "多元型";
+  var e = ENERGY_LABEL[state.energy] || "平衡型";
+  return b + " · " + e;
 }
 
 /* -------- 渲染结果页 -------- */
 function renderResult() {
-  var result = matchSchools();
-  var mainCat = result.mainCat;
-  var main = result.main;
-  var alts = result.alts;
+  var m = matchSchools();
   var persona = generatePersona();
-  var quote = QUOTES[mainCat] || "总有一条路是为你准备的，AI 已经帮你找到了。";
+  var quote = (QUOTES[m.branch] && QUOTES[m.branch][m.tier]) || "每一分，都在指向那个可能更对的你。";
 
   // 主通知书
-  document.getElementById('notice-school').textContent = main.name;
-  document.getElementById('notice-major').textContent = main.major;
+  document.getElementById('notice-school').textContent = m.main.name;
+  document.getElementById('notice-major').textContent = m.main.major || '';
   document.getElementById('notice-persona').textContent = persona;
-  document.getElementById('notice-quote').textContent = "\u300C" + (main.reason || quote) + "\u300D";
+  document.getElementById('notice-quote').textContent = '“' + quote + '”';
   document.getElementById('notice-no').textContent = generateNoticeNo();
-  document.getElementById('notice-name').textContent = " 你 ";
+  document.getElementById('notice-name').textContent = ' ' + state.nickname + ' ';
 
-  // 备选平行时空
+  // 备选
   var altHtml = '';
-  for (var i = 0; i < alts.length; i++) {
-    altHtml += '<div class="alt-card">' +
-      '<p class="alt-label">· 平行时空 ' + (i + 2) + ' ·</p>' +
-      '<p class="alt-school">' + alts[i].name + '</p>' +
-      '<p class="alt-major">' + alts[i].major + '</p>' +
-      '<p class="alt-reason">' + (alts[i].reason || '') + '</p>' +
+  for (var i = 0; i < m.alts.length; i++) {
+    var a = m.alts[i];
+    var label = (a.cat === 'egg') ? '· 平行时空 · 彩蛋 ·' : '· 平行时空 ' + (i + 2) + ' ·';
+    altHtml += '<div class="alt-card' + (a.cat === 'egg' ? ' egg' : '') + '">' +
+      '<p class="alt-label">' + label + '</p>' +
+      '<p class="alt-school">' + a.name + '</p>' +
+      '<p class="alt-major">' + (a.major || '') + '</p>' +
+      (a.note ? '<p class="alt-reason">' + a.note + '</p>' : '') +
       '</div>';
   }
   document.getElementById('alt-cards').innerHTML = altHtml;
 
-  // CTA 分数
-  document.getElementById('cta-score').textContent = state.newScore;
+  // 保存结果到 state（生成海报时用）
+  state.result = { main: m.main, alts: m.alts, persona: persona, quote: quote };
 }
 
 function generateNoticeNo() {
@@ -1238,25 +2055,251 @@ function generateNoticeNo() {
   return "2026-" + rand;
 }
 
-/* -------- 跳转 QB -------- */
+/* -------- 跳转 QB 真实工具 -------- */
 function jumpToQB() {
-  // 实际项目中可使用 Universal Link / URL Scheme 唤起 QB App
-  // Demo 版本：提示 + 引导下载
-  alert("即将跳转 QQ浏览器AI高考通\n带入分数：" + state.newScore + " 分（" + state.province + "）\n\n查看真实志愿推荐方案");
+  var url = 'https://gaokao.qq.com/?from=pt-h5&score=' + state.newScore +
+            '&prov=' + encodeURIComponent(state.province) +
+            '&type=' + state.examType;
+  // 真实环境下直接跳转：
+  window.location.href = url;
+}
+
+/* -------- 生成分享海报（Canvas） -------- */
+function generatePoster() {
+  var mask = document.getElementById('poster-mask');
+  mask.classList.add('active');
+
+  // 延迟执行，保证 loading 动画显出来
+  setTimeout(function() { drawPoster(); }, 50);
+}
+
+function closePoster() {
+  document.getElementById('poster-mask').classList.remove('active');
+}
+
+function drawPoster() {
+  var canvas = document.getElementById('poster-canvas');
+  var W = 750, H = 1334;
+  canvas.width = W; canvas.height = H;
+  var ctx = canvas.getContext('2d');
+
+  // 背景：深蓝渐变
+  var grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, '#1a2a5e');
+  grad.addColorStop(0.6, '#0b1030');
+  grad.addColorStop(1, '#1e1a4e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // 装饰星光
+  ctx.fillStyle = 'rgba(255, 215, 150, 0.8)';
+  for (var i = 0; i < 40; i++) {
+    var x = Math.random() * W;
+    var y = Math.random() * H;
+    var r = Math.random() * 2 + 0.5;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // 顶部小标
+  ctx.fillStyle = '#c4a97c';
+  ctx.font = 'bold 24px -apple-system, "PingFang SC", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('2026 · 平行时空录取通知书', W / 2, 140);
+
+  // 烫金装饰线
+  ctx.strokeStyle = 'rgba(196, 169, 124, 0.5)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 120, 165);
+  ctx.lineTo(W / 2 + 120, 165);
+  ctx.stroke();
+
+  // 称呼
+  ctx.fillStyle = '#d4dcf5';
+  ctx.font = '28px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillText('亲爱的 ' + state.nickname + ' 同学：', W / 2, 230);
+
+  // 正文
+  ctx.fillStyle = '#b4bfea';
+  ctx.font = '24px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillText('在另一条时间线上，你被录取至——', W / 2, 290);
+
+  // 学校名（烫金大字）
+  var schoolName = state.result.main.name;
+  ctx.font = 'bold 58px -apple-system, "PingFang SC", sans-serif';
+  var schoolGrad = ctx.createLinearGradient(0, 350, 0, 420);
+  schoolGrad.addColorStop(0, '#fff7d6');
+  schoolGrad.addColorStop(1, '#e4c789');
+  ctx.fillStyle = schoolGrad;
+  ctx.fillText(schoolName, W / 2, 400);
+
+  // 专业
+  ctx.fillStyle = '#d4dcf5';
+  ctx.font = '28px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillText('专业：' + (state.result.main.major || ''), W / 2, 460);
+
+  // 分隔
+  ctx.strokeStyle = 'rgba(196, 169, 124, 0.4)';
+  ctx.beginPath();
+  ctx.moveTo(80, 520);
+  ctx.lineTo(W - 80, 520);
+  ctx.stroke();
+
+  // 人设标签（胶囊）
+  ctx.fillStyle = 'rgba(196, 169, 124, 0.18)';
+  var tag = state.result.persona;
+  ctx.font = '26px -apple-system, "PingFang SC", sans-serif';
+  var tagW = ctx.measureText(tag).width + 48;
+  roundRect(ctx, W / 2 - tagW / 2, 560, tagW, 50, 25);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(196, 169, 124, 0.5)';
+  ctx.stroke();
+  ctx.fillStyle = '#fff7d6';
+  ctx.fillText(tag, W / 2, 593);
+
+  // 寄语（自动换行）
+  ctx.fillStyle = '#e4c789';
+  ctx.font = 'italic 28px -apple-system, "PingFang SC", serif';
+  var quote = state.result.quote;
+  wrapText(ctx, '“' + quote + '”', W / 2, 680, W - 120, 44);
+
+  // 备选 3 所（简化展示）
+  ctx.fillStyle = 'rgba(196, 169, 124, 0.7)';
+  ctx.font = '22px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillText('· 其他平行时空里的你 ·', W / 2, 850);
+  ctx.fillStyle = '#d4dcf5';
+  ctx.font = '22px -apple-system, "PingFang SC", sans-serif';
+  var altY = 890;
+  for (var k = 0; k < Math.min(3, state.result.alts.length); k++) {
+    var a = state.result.alts[k];
+    ctx.fillText(a.name + ' · ' + (a.major || ''), W / 2, altY + k * 36);
+  }
+
+  // 底部分隔虚线
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = 'rgba(196, 169, 124, 0.4)';
+  ctx.beginPath();
+  ctx.moveTo(60, 1060);
+  ctx.lineTo(W - 60, 1060);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // 二维码区
+  drawQRCode(ctx, W / 2 - 80, 1090, 160);
+
+  // 二维码下方引导
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 26px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillText('扫码开启你的平行时空', W / 2, 1285);
+  ctx.fillStyle = '#8a9bd6';
+  ctx.font = '20px -apple-system, "PingFang SC", sans-serif';
+  ctx.fillText('QQ浏览器AI高考通 · 每一分都算数', W / 2, 1315);
+
+  // 显示图片
+  setTimeout(function() {
+    var img = document.getElementById('poster-img');
+    img.src = canvas.toDataURL('image/png');
+    img.style.display = 'block';
+    document.getElementById('poster-loading').style.display = 'none';
+  }, 200);
+}
+
+// 圆角矩形
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+// 文字自动换行
+function wrapText(ctx, text, cx, y, maxWidth, lineHeight) {
+  var chars = text.split('');
+  var line = '';
+  var lines = [];
+  for (var i = 0; i < chars.length; i++) {
+    var testLine = line + chars[i];
+    if (ctx.measureText(testLine).width > maxWidth && line) {
+      lines.push(line);
+      line = chars[i];
+    } else {
+      line = testLine;
+    }
+  }
+  if (line) lines.push(line);
+  for (var j = 0; j < lines.length; j++) {
+    ctx.fillText(lines[j], cx, y + j * lineHeight);
+  }
+}
+
+// 简易二维码（占位）：实际用 QR.js 库生成；这里用伪二维码方块阵占位
+// 指向 H5 入口：https://xiongxin-josie-del.github.io/qb-gaokao-h5/
+function drawQRCode(ctx, x, y, size) {
+  // 白底
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(x, y, size, size);
+
+  // 调用 qrcode-generator 库生成
+  if (typeof qrcode === 'function') {
+    var qr = qrcode(0, 'M');
+    qr.addData('https://xiongxin-josie-del.github.io/qb-gaokao-h5/');
+    qr.make();
+    var cells = qr.getModuleCount();
+    var cellSize = size / cells;
+    ctx.fillStyle = '#1a1a2e';
+    for (var r = 0; r < cells; r++) {
+      for (var c = 0; c < cells; c++) {
+        if (qr.isDark(r, c)) {
+          ctx.fillRect(x + c * cellSize, y + r * cellSize, cellSize + 0.5, cellSize + 0.5);
+        }
+      }
+    }
+  } else {
+    // 降级：画一个占位图案
+    ctx.fillStyle = '#1a1a2e';
+    for (var rr = 0; rr < 25; rr++) {
+      for (var cc = 0; cc < 25; cc++) {
+        if ((rr + cc) % 3 === 0) {
+          ctx.fillRect(x + cc * (size / 25), y + rr * (size / 25), size / 25, size / 25);
+        }
+      }
+    }
+  }
+}
+
+// 下载海报
+function downloadPoster() {
+  var canvas = document.getElementById('poster-canvas');
+  var link = document.createElement('a');
+  link.download = '平行时空录取通知书-' + state.nickname + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
 }
 
 /* -------- 重新开始 -------- */
 function restart() {
   state.year = null;
   state.province = null;
+  state.examType = null;
   state.oldScore = null;
   state.newScore = null;
   state.rank = null;
+  state.nickname = '';
+  state.branch = null;
+  state.energy = null;
   state.answers = [];
   state.currentQ = 0;
+  state.branchQueue = [];
   document.getElementById('in-year').value = '';
   document.getElementById('in-prov').value = '';
+  document.getElementById('in-type').value = '';
   document.getElementById('in-score').value = '';
+  document.getElementById('in-nick').value = '';
   goScene('scene-cover');
 }
 
