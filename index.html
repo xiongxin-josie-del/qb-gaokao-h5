@@ -273,7 +273,7 @@ button { cursor: pointer; }
 .chat-body {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 16px 16px;
+  padding: 20px 16px 32px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
@@ -367,7 +367,7 @@ button { cursor: pointer; }
 .notice-card.main {
   background: linear-gradient(140deg, #1a2a5e 0%, #0b1030 60%, #1e1a4e 100%);
   color: #fff;
-  padding: 36px 28px 28px;
+  padding: 44px 28px 28px;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -387,11 +387,12 @@ button { cursor: pointer; }
 .notice-card.main > * { position: relative; z-index: 1; }
 .notice-corner {
   position: absolute;
-  top: 16px; right: 20px;
-  font-size: 11px;
+  top: 14px; right: 18px;
+  font-size: 10px;
   color: #c4a97c;
   letter-spacing: 1px;
   z-index: 2;
+  opacity: 0.75;
 }
 .notice-tag {
   font-size: 12px;
@@ -491,6 +492,7 @@ button { cursor: pointer; }
 .result-cta .cta-lead { font-size: 14px; color: #8a91ad; margin-bottom: 4px; }
 .result-cta .cta-desc { font-size: 18px; color: #1a1a2e; margin-bottom: 18px; font-weight: 600; }
 .result-cta .cta-desc b { color: #ff6b35; font-size: 22px; }
+.cta-claim { font-size: 11px; color: #8a91ad; margin: 8px 0 14px; letter-spacing: 0.5px; }
 .share-tip { margin-top: 12px; font-size: 12px; color: #8a91ad; line-height: 1.7; }
 
 /* ================= 海报弹窗 ================= */
@@ -553,13 +555,13 @@ button { cursor: pointer; }
     <section class="scene scene-1 active" id="scene-cover">
       <div class="bg-stars"></div>
       <div class="cover-inner">
-        <p class="cover-sub fade-in-1">QBot · 一次不算数、但挺认真的模拟</p>
+        <p class="cover-sub fade-in-1">QBot · 每一分都算数</p>
         <h1 class="cover-title fade-in-2">
           如果可以<br />重填一次志愿……
         </h1>
         <p class="cover-desc fade-in-3">
           把当年的分数交给 QBot<br />
-          看看现在，它们能带你去哪
+          看看它们现在能带你去哪
         </p>
         <button class="btn-primary fade-in-4" onclick="goScene('scene-input')">
           开始吧 →
@@ -616,7 +618,7 @@ button { cursor: pointer; }
     <!-- ========== Scene 3 : 分数折算揭晓 ========== -->
     <section class="scene scene-3" id="scene-calc">
       <div class="calc-inner">
-        <p class="calc-step">QBot 正在换算你当年的分数<br />在 2026 年的含金量……</p>
+        <p class="calc-step">QBot 正在换算你当年的分数，<br />在 2026 年的含金量……</p>
         <div class="calc-anim">
           <div class="num-old" id="num-old">—</div>
           <div class="arrow">→</div>
@@ -661,21 +663,21 @@ button { cursor: pointer; }
 
       <!-- 主角录取通知书 -->
       <div class="notice-card main" id="notice-main">
-        <div class="notice-corner">NO. <span id="notice-no">000000</span></div>
-        <p class="notice-tag">2026 届 · 平行时空录取通知书</p>
+        <div class="notice-corner">NO. <span id="notice-no">0000</span></div>
+        <p class="notice-tag">2026 · 平行时空录取通知书</p>
         <h3 class="notice-school" id="notice-school">XX 大学</h3>
         <p class="notice-major">专业：<span id="notice-major">XX 专业</span></p>
         <div class="notice-divider"></div>
         <p class="notice-hello">亲爱的<span id="notice-name"> 你 </span>同学：</p>
         <p class="notice-body">
-          QBot 看完了你的分数和 8 道选择题，<br />
-          这就是你，在另一条时间线上的人生坐标。<br /><br />
+          QBot 把你的分数和 8 道题答案全部算了进去，<br />
+          这就是你在另一条时间线上的人生坐标。<br /><br />
           <span class="persona" id="notice-persona">理工派 · 深度钻研型</span>
         </p>
         <p class="notice-quote" id="notice-quote">——</p>
         <div class="notice-footer">
           <p>QQ浏览器AI高考通</p>
-          <p class="small">每一分都算数</p>
+          <p class="small">—— 每一分都算数 ——</p>
         </div>
       </div>
 
@@ -688,10 +690,11 @@ button { cursor: pointer; }
       <!-- CTA 区域 -->
       <div class="result-cta">
         <p class="cta-lead">回到现实——</p>
-        <p class="cta-desc">想看看真·今年能上哪？</p>
+        <p class="cta-desc">想看看真·今年你这个分数能上哪？</p>
         <button class="btn-primary" onclick="jumpToQB()">
           去 QQ浏览器AI高考通 看看真实情况 →
         </button>
+        <p class="cta-claim">QBot 在那里给你一份认真版的 · 每一分都算数</p>
         <button class="btn-secondary" onclick="generatePoster()">
           生成我的专属海报 ✨
         </button>
@@ -759,26 +762,26 @@ var PROV_OFFSET = {
 
 var Q1 = {
   id: 'q1',
-  ai: "你今天发现了一个从没用过的 App，你会——",
+  ai: "你的朋友群里，有人转发了一则热搜新闻，评论区吵得正热闹。你点进去之后——",
   options: [
-    { t: "先翻设置，看看能改成什么样", route: "tech" },
-    { t: "先看评论区和攻略，搞懂别人怎么玩", route: "humanities" },
-    { t: "随便点点，哪个好看点哪个", route: "art" },
-    { t: "看它怎么赚钱、有没有羊毛可薅", route: "business" },
-    { t: "发群里问：谁用过，值不值下？", route: "service" },
-    { t: "先把它关了——不如出门跑两圈", route: "body" }
+    { t: "想搞清楚新闻里那组数据到底是怎么来的", route: "tech" },
+    { t: "好奇背后还有哪些没被报道出来的细节", route: "humanities" },
+    { t: "先被配图和视频吸引了，放大看细节", route: "art" },
+    { t: "下意识在想：这波热度，谁在借势赚钱", route: "business" },
+    { t: "先翻评论区，看大家都怎么说", route: "service" },
+    { t: "扫两眼就划走，不如出去走一圈", route: "body" }
   ]
 };
 
 var Q2 = {
   id: 'q2',
-  ai: "上一次你为了一件事废寝忘食，是什么样的场景？",
+  ai: "真的很累、情绪很低的那一晚，你最常用来回血的方式是——",
   options: [
-    { t: "一个人关起门，扎进去的那种", tag: "solo" },
-    { t: "和一群人脑暴、互相接梗的那种", tag: "team" },
-    { t: "站在人前讲、演、比赛的那种", tag: "stage" },
-    { t: "一个人扛着一件难事往前冲的那种", tag: "grit" },
-    { t: "认真想了想，最近好像没有", tag: "slow" }
+    { t: "一个人关掉手机，做点安静的小事", tag: "solo" },
+    { t: "找两三个真朋友，随便聊聊", tag: "team" },
+    { t: "让自己忙起来，干点有反馈的事", tag: "stage" },
+    { t: "睡一觉，醒来该干嘛干嘛", tag: "grit" },
+    { t: "刷手机、刷剧，不去想它", tag: "slow" }
   ]
 };
 
@@ -788,57 +791,57 @@ var BRANCHES = {
   /* ====== 主线 A：理工 ====== */
   tech: [
     {
-      ai: "看到一个 Bug，你心里的第一句话更像——",
+      ai: "你正在用的某个 App 突然出了个 bug，你会——",
       options: [
-        { t: "到底哪里错了，我必须找出来", tag: "engineer" },
-        { t: "这让我想到另一种思考方式", tag: "science" },
-        { t: "有没有更巧的路绕开它？", tag: "hacker" },
-        { t: "先交给别人吧，我想不动了", tag: "chill" }
+        { t: "打开反馈入口，把 bug 写清楚发过去", tag: "engineer" },
+        { t: "自己研究下怎么绕过去", tag: "hacker" },
+        { t: "去搜搜有没有人遇到过同样问题", tag: "researcher" },
+        { t: "算了，换个 App 用", tag: "pragmatic" }
       ]
     },
     {
-      ai: "如果给你一整块空白时间，你更想——",
+      ai: "朋友来问你『XX 值不值得买？』你通常会——",
+      options: [
+        { t: "打开三四个测评，列出优缺点对比给他", tag: "analyst" },
+        { t: "先反问他几个问题，帮他理清需求", tag: "systematic" },
+        { t: "直接告诉他我的经验，让他参考", tag: "experience" },
+        { t: "发链接给他，让他自己看", tag: "efficient" }
+      ]
+    },
+    {
+      ai: "你做一件事的时候，更想要的是——",
+      options: [
+        { t: "把每一步都打磨到最好", tag: "perfectionist" },
+        { t: "搞懂它背后到底为啥是这样", tag: "theorist" },
+        { t: "做出点没人做过的新东西", tag: "creative_tech" },
+        { t: "用最短时间做出能用的版本", tag: "pragmatic" }
+      ]
+    },
+    {
+      ai: "刷视频时，哪种会让你真的停下来多看两眼？",
+      options: [
+        { t: "把一个复杂系统拆开讲的流程图", tag: "systematic" },
+        { t: "一段优雅的公式或算法推导", tag: "theorist" },
+        { t: "有人把零件一件件组装成机器", tag: "maker" },
+        { t: "AI 演示它自己学会了某件事", tag: "frontier" }
+      ]
+    },
+    {
+      ai: "给你一整块空白时间，你更想——",
       options: [
         { t: "搭一个自己想用的小工具", tag: "builder" },
         { t: "把一个复杂问题彻底搞懂", tag: "researcher" },
         { t: "拆一个现成产品，看它怎么做的", tag: "tinker" },
-        { t: "先躺会儿再说", tag: "chill" }
+        { t: "把今天学到的东西整理成笔记", tag: "organized" }
       ]
     },
     {
-      ai: "你更容易被哪种人吸引？",
+      ai: "你希望别人怎么记住你？",
       options: [
-        { t: "能用技术解决现实问题的那种", tag: "pragmatic" },
-        { t: "对一个领域有真正深度的那种", tag: "deep" },
-        { t: "脑洞大、总有新想法的那种", tag: "creative_tech" },
-        { t: "动手快、说干就干的那种", tag: "maker" }
-      ]
-    },
-    {
-      ai: "面对一份说明书，你会——",
-      options: [
-        { t: "通读一遍，了解原理", tag: "systematic" },
-        { t: "直接上手，卡住再查", tag: "practical" },
-        { t: "看看目录，找感兴趣的章节", tag: "selective" },
-        { t: "扔一边，自己摸索", tag: "intuitive" }
-      ]
-    },
-    {
-      ai: "你更想做哪种东西？",
-      options: [
-        { t: "能被很多人用到的软件 / 产品", tag: "product" },
-        { t: "推动学科前进的一点点研究", tag: "academic" },
-        { t: "解决具体难题的硬件 / 系统", tag: "engineering" },
-        { t: "好看、好玩的交互作品", tag: "creative_tech" }
-      ]
-    },
-    {
-      ai: "以下场景，哪个最让你兴奋？",
-      options: [
-        { t: "半夜三点调通一行代码", tag: "coder" },
-        { t: "在白板前推导出一个结论", tag: "theorist" },
-        { t: "看自己做的机器真的跑起来", tag: "maker" },
-        { t: "和团队一起 launch 一个产品", tag: "pm" }
+        { t: "他做的东西，我一直在用", tag: "product" },
+        { t: "他是真懂这个的人", tag: "deep" },
+        { t: "他解决过一个特别难的问题", tag: "grit" },
+        { t: "他总有奇怪但对的想法", tag: "creative_tech" }
       ]
     }
   ],
@@ -846,57 +849,57 @@ var BRANCHES = {
   /* ====== 主线 B：人文 ====== */
   humanities: [
     {
-      ai: "你刷到一条新闻，更容易停下来看的是——",
+      ai: "看完一部让你触动的剧或电影，你通常会——",
       options: [
-        { t: "一个普通人的完整故事", tag: "narrative" },
+        { t: "立刻找评论和深度解读来读", tag: "reader" },
+        { t: "写下自己的感受，哪怕没人看", tag: "writer" },
+        { t: "找人聊聊，听听别人怎么看", tag: "speaker" },
+        { t: "让它在心里多待一会儿，暂时不去说", tag: "inner" }
+      ]
+    },
+    {
+      ai: "朋友向你倾诉了一件难事，你更像——",
+      options: [
+        { t: "耐心听完，不急着给建议", tag: "empathy" },
+        { t: "帮他一点点理清楚到底怎么回事", tag: "rational" },
+        { t: "能讲出一句戳中他的话", tag: "verbal" },
+        { t: "默默陪着，不说太多", tag: "quiet" }
+      ]
+    },
+    {
+      ai: "哪种话题，你愿意花半小时认真聊下去？",
+      options: [
+        { t: "一个人背后完整的故事和选择", tag: "narrative" },
         { t: "一段重要历史的来龙去脉", tag: "history" },
-        { t: "一个社会现象的深度分析", tag: "analyst" },
-        { t: "一场有争议的法律判决", tag: "law" }
+        { t: "一个社会现象到底是怎么形成的", tag: "sociology" },
+        { t: "一个价值问题该怎么判断", tag: "philosophy" }
       ]
     },
     {
-      ai: "朋友倾诉情绪时，你更像——",
+      ai: "看到一件不公平的事，你的第一反应是——",
       options: [
-        { t: "耐心听完的那个", tag: "empathy" },
-        { t: "帮对方理清思路的那个", tag: "rational" },
-        { t: "能讲出一句戳中他的话的那个", tag: "verbal" },
-        { t: "悄悄陪着、不说太多的那个", tag: "quiet" }
+        { t: "把事情经过完整记录下来", tag: "journalist" },
+        { t: "查清楚规则上它到底是怎么回事", tag: "law" },
+        { t: "想办法让更多人知道", tag: "advocate" },
+        { t: "先问当事人需要什么帮助", tag: "humanist" }
       ]
     },
     {
-      ai: "你更愿意花时间研究的是——",
+      ai: "给你一整块空白时间，你更想——",
       options: [
-        { t: "一个作家 / 导演背后的完整世界观", tag: "literature" },
-        { t: "一个国家 / 民族的兴衰轨迹", tag: "history" },
-        { t: "某种社会现象为什么会发生", tag: "sociology" },
-        { t: "一个哲学问题到底怎么回答", tag: "philosophy" }
+        { t: "一头扎进一本厚书里", tag: "reader" },
+        { t: "把最近想明白的事写下来", tag: "writer" },
+        { t: "约朋友深聊一次", tag: "speaker" },
+        { t: "看一部被推荐很久的老纪录片", tag: "observer" }
       ]
     },
     {
-      ai: "读过一本好书之后，你第一反应是——",
+      ai: "你更在乎别人怎么评价你？",
       options: [
-        { t: "写点什么记下来", tag: "writer" },
-        { t: "找人讨论这本书", tag: "speaker" },
-        { t: "去找作者其他作品", tag: "reader" },
-        { t: "让它在心里多待一会儿", tag: "inner" }
-      ]
-    },
-    {
-      ai: "你更喜欢哪种『表达方式』——",
-      options: [
-        { t: "把一件事写透", tag: "journalist" },
-        { t: "把一个观点辩明白", tag: "advocate" },
-        { t: "把一段情感拍出来 / 演出来", tag: "media" },
-        { t: "把一段历史整理清楚", tag: "historian" }
-      ]
-    },
-    {
-      ai: "下面哪种人设最像你？",
-      options: [
-        { t: "永远在记录和观察", tag: "recorder" },
-        { t: "对公平与秩序敏感", tag: "law" },
-        { t: "喜欢跨领域的联想", tag: "cross" },
-        { t: "对人本身最感兴趣", tag: "humanist" }
+        { t: "他说话总让我想多听几句", tag: "verbal" },
+        { t: "跟他聊完，我觉得更懂自己了", tag: "empathy" },
+        { t: "他写的东西我会保存下来", tag: "writer" },
+        { t: "他看问题总能看到一层更深的", tag: "deep" }
       ]
     }
   ],
@@ -904,21 +907,21 @@ var BRANCHES = {
   /* ====== 主线 C：艺术 ====== */
   art: [
     {
-      ai: "走进一家店，最先吸引你的是——",
+      ai: "走进一家陌生的店，最先抓住你的是——",
       options: [
-        { t: "它的招牌和门面设计", tag: "visual" },
-        { t: "它的氛围和灯光配乐", tag: "ambient" },
-        { t: "它的产品摆放和质感", tag: "craft" },
-        { t: "它里面的人穿什么", tag: "fashion" }
+        { t: "门面的招牌、字体、配色", tag: "visual" },
+        { t: "灯光、音乐和整体氛围", tag: "ambient" },
+        { t: "货品怎么摆、质感怎么样", tag: "craft" },
+        { t: "店里的人穿什么、什么状态", tag: "fashion" }
       ]
     },
     {
-      ai: "你拍照 / 发朋友圈时更在意——",
+      ai: "发朋友圈时，你最在意的是——",
       options: [
-        { t: "画面里的颜色搭配", tag: "color" },
-        { t: "光影和构图", tag: "composition" },
-        { t: "配的文字和调性", tag: "style" },
-        { t: "故事感和细节", tag: "story" }
+        { t: "画面颜色搭不搭", tag: "color" },
+        { t: "构图和光影对不对", tag: "composition" },
+        { t: "文字和图搭起来的调性", tag: "style" },
+        { t: "整件事的故事感", tag: "story" }
       ]
     },
     {
@@ -931,27 +934,27 @@ var BRANCHES = {
       ]
     },
     {
-      ai: "你更喜欢哪种观众反应？",
+      ai: "你更愿意听到哪种观众反应？",
       options: [
-        { t: "哇，好看！", tag: "visual_first" },
+        { t: "哇，真好看", tag: "visual_first" },
         { t: "这也太有故事了", tag: "narrative" },
-        { t: "这是我做过的情绪", tag: "emotional" },
+        { t: "这戳到我了", tag: "emotional" },
         { t: "没见过这种", tag: "original" }
       ]
     },
     {
-      ai: "做艺术类工作，你更能接受的状态是——",
+      ai: "理想的创作状态更像——",
       options: [
-        { t: "独自创作，完成后给大家看", tag: "solo" },
-        { t: "和一个团队一起完成一个大项目", tag: "team" },
-        { t: "上台表演、现场互动", tag: "stage" },
+        { t: "一个人埋头做，完成后再给人看", tag: "solo" },
+        { t: "和一个团队一起做一个大项目", tag: "team" },
+        { t: "上台面对观众，边做边得到反馈", tag: "stage" },
         { t: "混在一群懂行的人里互相刺激", tag: "scene" }
       ]
     },
     {
       ai: "下列哪个最接近你的审美取向？",
       options: [
-        { t: "干净、极简、有呼吸感", tag: "minimal" },
+        { t: "干净、极简、留白", tag: "minimal" },
         { t: "复杂、繁盛、信息量大", tag: "maximal" },
         { t: "复古、有时间感", tag: "retro" },
         { t: "先锋、没见过的那种", tag: "avant" }
@@ -962,52 +965,52 @@ var BRANCHES = {
   /* ====== 主线 D：商业 ====== */
   business: [
     {
-      ai: "看到一家网红店排长队，你第一反应是——",
+      ai: "看到一家店突然开始排长队，你的第一反应是——",
       options: [
         { t: "它的商业模式到底是什么？", tag: "model" },
-        { t: "这批客户是什么画像？", tag: "marketing" },
-        { t: "下一个风口会在哪？", tag: "trend" },
-        { t: "先买了再说，吃完发朋友圈", tag: "consumer" }
+        { t: "来排队的都是什么人？", tag: "marketing" },
+        { t: "这个会不会是下个风口？", tag: "trend" },
+        { t: "先排进去再说，吃完发朋友圈", tag: "consumer" }
       ]
     },
     {
-      ai: "你更擅长哪种事？",
+      ai: "同一个事，你更擅长哪一种？",
       options: [
         { t: "把数字和信息理得清清楚楚", tag: "analyst" },
         { t: "把一个想法讲到别人愿意买单", tag: "sales" },
-        { t: "把一件事从 0 推到 1", tag: "operator" },
+        { t: "把一件事从 0 推到能跑起来", tag: "operator" },
         { t: "在一群人里发现可以合作的人", tag: "connector" }
       ]
     },
     {
-      ai: "你更想参与的是——",
+      ai: "朋友要开一家小店，来问你最该先想什么，你会说——",
       options: [
-        { t: "管理一笔资本、让它变得更多", tag: "finance" },
-        { t: "经营一家公司 / 一个团队", tag: "management" },
-        { t: "谈一笔关键的合作", tag: "deal" },
-        { t: "创造一个从无到有的品牌", tag: "founder" }
+        { t: "算清账，成本和回本周期", tag: "finance" },
+        { t: "搞清你的客户是谁、为啥来你这", tag: "marketing" },
+        { t: "先小规模试一下，别一次投太多", tag: "mvp" },
+        { t: "找对合伙人比什么都重要", tag: "people" }
       ]
     },
     {
       ai: "下面哪种压力你相对扛得住？",
       options: [
-        { t: "数字层面的压力（业绩、KPI）", tag: "kpi" },
-        { t: "人际层面的压力（协调、博弈）", tag: "people" },
-        { t: "时间层面的压力（DDL、节奏）", tag: "pace" },
-        { t: "不确定性的压力（方向、决策）", tag: "uncertainty" }
+        { t: "业绩压力（KPI、数字）", tag: "kpi" },
+        { t: "人际压力（协调、博弈）", tag: "people" },
+        { t: "时间压力（DDL、节奏）", tag: "pace" },
+        { t: "不确定的压力（方向、决策）", tag: "uncertainty" }
       ]
     },
     {
-      ai: "让你选一个标签，你更想被叫做——",
+      ai: "让你选一个标签，你更想被叫——",
       options: [
         { t: "会算账的聪明人", tag: "finance" },
         { t: "会谈事的生意人", tag: "dealmaker" },
-        { t: "会经营的管理者", tag: "leader" },
+        { t: "能带队的管理者", tag: "leader" },
         { t: "会出点子的操盘手", tag: "strategist" }
       ]
     },
     {
-      ai: "以下哪个场景让你最兴奋？",
+      ai: "下面哪个场景让你最兴奋？",
       options: [
         { t: "一笔投资押对了", tag: "investor" },
         { t: "一个产品卖爆了", tag: "marketer" },
@@ -1020,57 +1023,57 @@ var BRANCHES = {
   /* ====== 主线 E：服务（教育/心理/公共） ====== */
   service: [
     {
-      ai: "身边有人遇到难处，你更常做的是——",
+      ai: "身边的人遇到难处，你更常做的是——",
       options: [
-        { t: "认真听完，再帮他理清楚", tag: "counselor" },
-        { t: "给他一个具体的建议和行动", tag: "coach" },
+        { t: "认真听完，再陪他理清楚", tag: "counselor" },
+        { t: "给他一个具体能做的建议", tag: "coach" },
         { t: "默默帮他处理一些杂事", tag: "helper" },
         { t: "把他拉进一个能帮到的圈子", tag: "connector" }
       ]
     },
     {
-      ai: "你更喜欢哪种工作成就感？",
+      ai: "你更能从哪种成就感里获得能量？",
       options: [
-        { t: "看到一个人因为你而改变", tag: "educator" },
-        { t: "让一群人能更好地生活", tag: "public" },
+        { t: "看到一个人因为你而改变了点什么", tag: "educator" },
+        { t: "让一群人的生活更好一点", tag: "public" },
         { t: "组织起一件原本没人做的事", tag: "organizer" },
-        { t: "让一段关系里的两方都好受", tag: "mediator" }
+        { t: "让一段紧张的关系缓和下来", tag: "mediator" }
       ]
     },
     {
       ai: "面对别人的情绪，你通常是——",
       options: [
-        { t: "能敏感地察觉到", tag: "perceiver" },
-        { t: "能稳稳地接住", tag: "anchor" },
-        { t: "会被影响但努力保持清醒", tag: "empath" },
-        { t: "希望保持距离但又忍不住关心", tag: "careful" }
+        { t: "能敏感察觉到对方的变化", tag: "perceiver" },
+        { t: "能稳稳接住，不被带走", tag: "anchor" },
+        { t: "会被影响，但努力保持清醒", tag: "empath" },
+        { t: "想保持距离，但又忍不住关心", tag: "careful" }
       ]
     },
     {
       ai: "哪种场景最符合你的节奏？",
       options: [
-        { t: "和孩子 / 学生打交道", tag: "teacher" },
-        { t: "和来访者 / 病人打交道", tag: "clinical" },
-        { t: "和社区 / 公共事务打交道", tag: "public" },
-        { t: "和组织 / 机构打交道", tag: "ngo" }
+        { t: "和孩子、学生打交道", tag: "teacher" },
+        { t: "和病人、来访者打交道", tag: "clinical" },
+        { t: "和社区、公共事务打交道", tag: "public" },
+        { t: "和组织、机构打交道", tag: "ngo" }
       ]
     },
     {
-      ai: "你觉得自己更擅长哪种表达？",
+      ai: "你自评更擅长哪种表达？",
       options: [
         { t: "把复杂的事讲清楚", tag: "teacher" },
         { t: "让紧张的人放松下来", tag: "counselor" },
         { t: "把一群人动员起来", tag: "organizer" },
-        { t: "让对立的双方谈下去", tag: "mediator" }
+        { t: "让对立双方都愿意继续谈", tag: "mediator" }
       ]
     },
     {
-      ai: "下面哪种『被需要』最让你踏实？",
+      ai: "你更希望自己被当作哪种人？",
       options: [
-        { t: "被当成『值得信任的那个人』", tag: "trusted" },
-        { t: "被当成『能解决问题的人』", tag: "solver" },
-        { t: "被当成『懂我的人』", tag: "ally" },
-        { t: "被当成『可以托付的人』", tag: "reliable" }
+        { t: "值得信任的那个", tag: "trusted" },
+        { t: "能解决问题的那个", tag: "solver" },
+        { t: "懂我的那个", tag: "ally" },
+        { t: "可以托付的那个", tag: "reliable" }
       ]
     }
   ],
@@ -1078,57 +1081,57 @@ var BRANCHES = {
   /* ====== 主线 F：身体/运动/医学/军警 ====== */
   body: [
     {
-      ai: "以下几种状态，哪一个你最受不了？",
+      ai: "以下几种状态，你最受不了哪一个？",
       options: [
         { t: "一整天坐着不动", tag: "active" },
         { t: "一件事没个清楚的结果", tag: "disciplined" },
-        { t: "看人痛苦却帮不上忙", tag: "healer" },
-        { t: "身边一团乱没人管", tag: "guardian" }
+        { t: "看别人不舒服却帮不上忙", tag: "healer" },
+        { t: "周围一团乱没人管", tag: "guardian" }
       ]
     },
     {
-      ai: "运动 / 户外的时候，你更享受——",
+      ai: "运动或户外时，你更享受——",
       options: [
         { t: "一个人稳稳跑下去的专注", tag: "solo_athlete" },
         { t: "和队友一起赢一场的感觉", tag: "team_sport" },
-        { t: "挑战极限那一下的痛快", tag: "extreme" },
+        { t: "挑战极限那一瞬的痛快", tag: "extreme" },
         { t: "走山路、看风景的慢节奏", tag: "outdoor" }
       ]
     },
     {
       ai: "你更向往哪种工作环境？",
       options: [
-        { t: "医院 / 诊所里帮人把身体修好", tag: "medical" },
-        { t: "操场 / 训练场上把身体练好", tag: "sports" },
-        { t: "户外 / 一线把秩序维护好", tag: "security" },
-        { t: "救援 / 急救现场把生命救回来", tag: "rescue" }
+        { t: "诊室/手术室，把身体修好", tag: "medical" },
+        { t: "操场/训练场，把身体练好", tag: "sports" },
+        { t: "户外/一线，把秩序维护好", tag: "security" },
+        { t: "急救/救援现场，把命救回来", tag: "rescue" }
       ]
     },
     {
-      ai: "下面哪种『能力』你最想拥有？",
+      ai: "下面哪种能力你最想拥有？",
       options: [
-        { t: "在高强度下依然能冷静判断", tag: "calm" },
-        { t: "面对身体极限还能多扛一下", tag: "resilient" },
-        { t: "看一眼就能发现问题的敏锐", tag: "observant" },
-        { t: "能让伤痛的人放松下来的手感", tag: "healer" }
+        { t: "高压下依然冷静判断", tag: "calm" },
+        { t: "身体到极限还能再扛一下", tag: "resilient" },
+        { t: "一眼发现不对劲的敏锐", tag: "observant" },
+        { t: "让疼痛的人放松下来的手感", tag: "healer" }
       ]
     },
     {
-      ai: "哪种『规律』让你觉得踏实？",
+      ai: "哪种日常让你觉得踏实？",
       options: [
         { t: "每天打卡、日拱一卒", tag: "routine" },
         { t: "有清晰的目标和训练计划", tag: "goal" },
         { t: "有规矩、有纪律、有队伍", tag: "discipline" },
-        { t: "有使命感、有救人/助人的意义", tag: "mission" }
+        { t: "有使命感、每天在帮人", tag: "mission" }
       ]
     },
     {
-      ai: "以下场景哪个最接近你理想的一天？",
+      ai: "以下哪一天最接近你理想中的一天？",
       options: [
-        { t: "清晨训练 / 比赛 / 健身", tag: "sports" },
-        { t: "早查房 / 手术 / 问诊", tag: "medical" },
-        { t: "执勤 / 巡逻 / 指挥调度", tag: "security" },
-        { t: "野外 / 荒野 / 远征", tag: "adventure" }
+        { t: "清晨训练、比赛、健身", tag: "sports" },
+        { t: "早查房、问诊、出手术", tag: "medical" },
+        { t: "执勤、巡逻、应急调度", tag: "security" },
+        { t: "野外徒步、远征、探险", tag: "adventure" }
       ]
     }
   ]
@@ -1787,7 +1790,7 @@ function startChat() {
   document.getElementById('chat-body').innerHTML = '';
   document.getElementById('chat-options').innerHTML = '';
 
-  // 开场：QBot 自我介绍（2 条气泡）
+  // 开场：QBot 自我介绍（3 条气泡，带每一分都算数埋点）
   setTimeout(function() {
     pushAIBubble(
       "Hi，我是 QBot——你的专属 AI 顾问。",
@@ -1795,7 +1798,12 @@ function startChat() {
         pushAIBubble(
           "最近正忙着帮人做志愿决策，今天给你来个“番外篇”。",
           function() {
-            setTimeout(function() { askQ1(); }, 400);
+            pushAIBubble(
+              "接下来 8 个场景题。你的每一分、每一面，QBot 都会算进去。",
+              function() {
+                setTimeout(function() { askQ1(); }, 500);
+              }
+            );
           }
         );
       }
@@ -1809,7 +1817,7 @@ function pushAIBubble(text, cb) {
   var typing = document.createElement('div');
   typing.className = 'bubble ai typing';
   body.appendChild(typing);
-  scrollChatToBottom();
+  scrollToBubble(typing);
 
   setTimeout(function() {
     typing.remove();
@@ -1817,7 +1825,7 @@ function pushAIBubble(text, cb) {
     ai.className = 'bubble ai';
     ai.textContent = text;
     body.appendChild(ai);
-    scrollChatToBottom();
+    scrollToBubble(ai);
     if (cb) setTimeout(cb, 350);
   }, 700);
 }
@@ -1829,17 +1837,25 @@ function pushUserBubble(text) {
   me.className = 'bubble me';
   me.textContent = text;
   body.appendChild(me);
-  scrollChatToBottom();
+  scrollToBubble(me);
 }
 
-// 滚动到底部（修复 bug：延迟到下一帧，确保 DOM 更新完再滚）
-function scrollChatToBottom() {
-  var body = document.getElementById('chat-body');
-  // 双帧滚动，兼容各种 WebView
+// 滚动让气泡主动进入视野（比 scrollTop 更稳，兼容选项框高度变化）
+function scrollToBubble(el) {
   requestAnimationFrame(function() {
-    body.scrollTop = body.scrollHeight;
     requestAnimationFrame(function() {
-      body.scrollTop = body.scrollHeight;
+      if (el && el.scrollIntoView) {
+        try {
+          el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+        } catch (e) {
+          // 老 WebView 降级
+          var body = document.getElementById('chat-body');
+          body.scrollTop = body.scrollHeight;
+        }
+      } else {
+        var body2 = document.getElementById('chat-body');
+        body2.scrollTop = body2.scrollHeight;
+      }
     });
   });
 }
@@ -1913,8 +1929,8 @@ function updateProgress(n) {
 
 /* ---- 对话结束 ---- */
 function finishChat() {
-  pushAIBubble("好，画像差不多成形了——", function() {
-    pushAIBubble("正在为" + state.nickname + "生成平行时空录取通知书……", function() {
+  pushAIBubble("好，你的每一面我都算进去了——", function() {
+    pushAIBubble("正在为 " + state.nickname + " 生成平行时空录取通知书……", function() {
       setTimeout(function() { goScene('scene-result'); }, 1200);
     });
   });
@@ -1924,78 +1940,81 @@ function finishChat() {
 function matchSchools() {
   var branch = state.branch || 'humanities';
   var tier = scoreToTier(state.newScore);
-  var pool = (SCHOOLS[branch] && SCHOOLS[branch][tier]) || [];
+  var altBranches = pickAltBranches(branch);
 
-  // 主角学校：主线+档位池里随机 1 所
-  var main;
-  if (pool.length > 0) {
-    main = pool[Math.floor(Math.random() * pool.length)];
-  } else {
-    main = { name: "综合性大学", major: "适合你的专业" };
-  }
+  // 主角：本主线本档位
+  var mainPool = (SCHOOLS[branch] && SCHOOLS[branch][tier]) || [];
+  var main = randomFromPool(mainPool) || { name: "综合性大学", major: "" };
 
-  // 备选 3 所：从"相邻档位"和"相邻主线"取
   var alts = [];
-  var altBranches = pickAltBranches(branch); // 相邻主线
-  var tiers = ['S', 'A', 'B', 'C', 'D', 'E', 'F'];
-  var tierIdx = tiers.indexOf(tier);
+  var usedNames = { };
+  usedNames[main.name] = true;
 
-  // 第 1 所备选：同档位、相邻主线
+  // 第 1 所：同档位、相邻主线（换路径、不掉档）
   var b1 = altBranches[0];
   var p1 = (SCHOOLS[b1] && SCHOOLS[b1][tier]) || [];
-  if (p1.length > 0) {
-    alts.push({
-      cat: b1,
-      name: p1[Math.floor(Math.random() * p1.length)].name,
-      major: p1[Math.floor(Math.random() * p1.length)].major
-    });
+  var a1 = pickUnique(p1, usedNames);
+  if (a1) {
+    a1.cat = b1;
+    alts.push(a1);
+    usedNames[a1.name] = true;
   }
 
-  // 第 2 所备选：相邻档位、同主线（冲一冲）
-  var rushTier = tiers[Math.max(0, tierIdx - 1)];
-  var p2 = (SCHOOLS[branch] && SCHOOLS[branch][rushTier]) || [];
-  if (p2.length > 0 && rushTier !== tier) {
-    alts.push({
-      cat: branch,
-      name: p2[Math.floor(Math.random() * p2.length)].name,
-      major: p2[Math.floor(Math.random() * p2.length)].major
-    });
-  } else {
-    var b2 = altBranches[1] || altBranches[0];
-    var p2b = (SCHOOLS[b2] && SCHOOLS[b2][tier]) || [];
-    if (p2b.length > 0) {
-      alts.push({
-        cat: b2,
-        name: p2b[Math.floor(Math.random() * p2b.length)].name,
-        major: p2b[Math.floor(Math.random() * p2b.length)].major
-      });
-    }
+  // 第 2 所：本主线、相邻档位（冲一冲 / 保一保）
+  var altTier = pickAltTier(tier);
+  var p2 = (SCHOOLS[branch] && SCHOOLS[branch][altTier]) || [];
+  var a2 = pickUnique(p2, usedNames);
+  if (a2) {
+    a2.cat = branch;
+    alts.push(a2);
+    usedNames[a2.name] = true;
   }
 
-  // 第 3 所：10% 概率放神校彩蛋，否则同档位另一主线
-  if (Math.random() < 0.15 && tierIdx <= 3) {
+  // 第 3 所：有 12% 概率放神校彩蛋（仅限 B 档以上，避免低分突然插清华）
+  var tierIdx = ['S','A','B','C','D','E','F'].indexOf(tier);
+  if (Math.random() < 0.12 && tierIdx <= 3) {
     var egg = EASTER_EGGS[Math.floor(Math.random() * EASTER_EGGS.length)];
     alts.push({ cat: 'egg', name: egg.name, major: egg.major, note: egg.note });
   } else {
+    // 否则：另一个相邻主线、同档位
     var b3 = altBranches[1] || altBranches[0];
     var p3 = (SCHOOLS[b3] && SCHOOLS[b3][tier]) || [];
-    if (p3.length > 0) {
-      alts.push({
-        cat: b3,
-        name: p3[Math.floor(Math.random() * p3.length)].name,
-        major: p3[Math.floor(Math.random() * p3.length)].major
-      });
-    }
-  }
-
-  // 去重：如果 alts 里有和 main 同名的，换一个
-  for (var i = 0; i < alts.length; i++) {
-    if (alts[i].name === main.name && pool.length > 1) {
-      alts[i].name = pool[(Math.floor(Math.random() * pool.length) + 1) % pool.length].name;
+    var a3 = pickUnique(p3, usedNames);
+    if (a3) {
+      a3.cat = b3;
+      alts.push(a3);
+      usedNames[a3.name] = true;
     }
   }
 
   return { branch: branch, tier: tier, main: main, alts: alts };
+}
+
+// 从池子里随机取一个，带去重
+function pickUnique(pool, usedMap) {
+  if (!pool || pool.length === 0) return null;
+  var candidates = [];
+  for (var i = 0; i < pool.length; i++) {
+    if (!usedMap[pool[i].name]) candidates.push(pool[i]);
+  }
+  if (candidates.length === 0) return Object.assign({}, pool[Math.floor(Math.random() * pool.length)]);
+  return Object.assign({}, candidates[Math.floor(Math.random() * candidates.length)]);
+}
+
+function randomFromPool(pool) {
+  if (!pool || pool.length === 0) return null;
+  return Object.assign({}, pool[Math.floor(Math.random() * pool.length)]);
+}
+
+// 相邻档位：偶尔往上冲一档，偶尔往下保一档
+function pickAltTier(tier) {
+  var tiers = ['S', 'A', 'B', 'C', 'D', 'E', 'F'];
+  var idx = tiers.indexOf(tier);
+  var candidates = [];
+  if (idx > 0) candidates.push(tiers[idx - 1]);        // 冲一档
+  if (idx < tiers.length - 1) candidates.push(tiers[idx + 1]); // 保一档
+  if (candidates.length === 0) return tier;
+  return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
 // 根据主线挑 2 个相邻主线作为备选来源
@@ -2051,8 +2070,8 @@ function renderResult() {
 }
 
 function generateNoticeNo() {
-  var rand = Math.floor(Math.random() * 900000 + 100000);
-  return "2026-" + rand;
+  var rand = Math.floor(Math.random() * 9000 + 1000);
+  return rand;
 }
 
 /* -------- 跳转 QB 真实工具 -------- */
