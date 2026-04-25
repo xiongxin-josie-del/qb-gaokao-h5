@@ -1723,43 +1723,164 @@ function normalInv(p) {
   }
 }
 
-/* ============ 分数等位折算（正态分布近似 · 等位换算） ============ */
-// 逻辑：当年分数 → 百分位（假设正态分布）→ 当年排名 →
-//       2026 年同百分位 → 2026 年等位分
+/* ============ 真实一分一段锚点表（由 OCR 爬取 + 邻省映射生成，见 score_table.json） ============ */
+// 每条 SCORE_TABLE[省][年][科目] = [[分数, 累计人数], ...]，分数降序
+// 通过 fetch 异步加载（避免把 60KB JSON 塞进主脚本）
+var SCORE_TABLE = null;
+var SCORE_TABLE_LOADED = false;
+function loadScoreTable(cb) {
+  if (SCORE_TABLE_LOADED) { cb && cb(); return; }
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'score_table.json', true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          try { SCORE_TABLE = JSON.parse(xhr.responseText); } catch (e) { SCORE_TABLE = null; }
+        }
+        SCORE_TABLE_LOADED = true;
+        cb && cb();
+      }
+    };
+    xhr.send();
+  } catch (e) { SCORE_TABLE_LOADED = true; cb && cb(); }
+}
+
+// 新高考省份（subj 用 physics/history） + 不分文理省份（subj 用 unified）
+var NEW_GAOKAO_START = {
+  "北京": 2020, "上海": 2017, "天津": 2020, "浙江": 2017, "山东": 2020,
+  "海南": 2020, "河北": 2021, "辽宁": 2021, "福建": 2021, "湖北": 2021,
+  "湖南": 2021, "重庆": 2021, "广东": 2021, "江苏": 2021,
+  "吉林": 2024, "黑龙江": 2024, "安徽": 2024, "江西": 2024, "广西": 2024, "贵州": 2024
+};
+var UNIFIED_PROVS = { "北京": 2020, "上海": 2017, "天津": 2020, "海南": 2020 };
+
+// 用户 examType（arts/science/new）与表里的 subj（arts/science/physics/history/unified）之间的桥
+function resolveSubj(prov, year, examType) {
+  // 不分文理省份
+  if (UNIFIED_PROVS[prov] && year >= UNIFIED_PROVS[prov]) return 'unified';
+  var newStart = NEW_GAOKAO_START[prov];
+  if (newStart && year >= newStart) {
+    // 新高考：arts → history，其他 → physics
+    return examType === 'arts' ? 'history' : 'physics';
+  }
+  // 老高考：arts / science
+  return examType === 'arts' ? 'arts' : 'science';
+}
+
+// 在锚点表中，根据分数插值对应累计人数
+function interpolateRank(anchors, score) {
+  // anchors: [[分数, 累计], ...]，分数降序
+  if (!anchors || anchors.length === 0) return null;
+  // 过滤 null
+  var valid = [];
+  for (var i = 0; i < anchors.length; i++) {
+    if (anchors[i][1] != null) valid.push(anchors[i]);
+  }
+  if (valid.length === 0) return null;
+  // 分数高于最高锚点：近似 valid[0][1] / 2
+  if (score >= valid[0][0]) return Math.max(1, Math.floor(valid[0][1] * 0.5));
+  // 分数低于最低锚点：按线性外推（保守：返回最大累计）
+  if (score <= valid[valid.length - 1][0]) return valid[valid.length - 1][1];
+  // 在锚点之间：线性插值
+  for (var j = 0; j < valid.length - 1; j++) {
+    var s1 = valid[j][0], c1 = valid[j][1];
+    var s2 = valid[j + 1][0], c2 = valid[j + 1][1];
+    if (score <= s1 && score >= s2) {
+      var frac = (s1 - score) / (s1 - s2);
+      return Math.round(c1 + (c2 - c1) * frac);
+    }
+  }
+  return null;
+}
+
+// 在锚点表中，根据排名反推分数（rank 从小到大对应分数从高到低）
+function interpolateScoreByRank(anchors, rank) {
+  if (!anchors || anchors.length === 0) return null;
+  var valid = [];
+  for (var i = 0; i < anchors.length; i++) {
+    if (anchors[i][1] != null) valid.push(anchors[i]);
+  }
+  if (valid.length === 0) return null;
+  // rank 小于最高锚点的人数：近似最高分 +5
+  if (rank <= valid[0][1]) return valid[0][0] + 3;
+  // rank 大于最低锚点的人数：返回最低锚点分
+  if (rank >= valid[valid.length - 1][1]) return valid[valid.length - 1][0];
+  for (var j = 0; j < valid.length - 1; j++) {
+    var s1 = valid[j][0], c1 = valid[j][1];
+    var s2 = valid[j + 1][0], c2 = valid[j + 1][1];
+    if (rank >= c1 && rank <= c2) {
+      var frac = (rank - c1) / (c2 - c1);
+      return Math.round(s1 + (s2 - s1) * frac);
+    }
+  }
+  return null;
+}
+
+function lookupAnchors(prov, year, subj) {
+  if (!SCORE_TABLE) return null;
+  var p = SCORE_TABLE[prov]; if (!p) return null;
+  var y = p[String(year)]; if (!y) return null;
+  // 先精确匹配 subj
+  if (y[subj]) return y[subj];
+  // 回退：如果是 new 高考相关 subj 缺失，试同年份的同文理分类
+  if (subj === 'physics' && y['science']) return y['science'];
+  if (subj === 'history' && y['arts']) return y['arts'];
+  if (subj === 'science' && y['physics']) return y['physics'];
+  if (subj === 'arts' && y['history']) return y['history'];
+  // 再试 unified
+  if (y['unified']) return y['unified'];
+  return null;
+}
+
+/* ============ 分数等位折算：查表优先，正态兜底 ============ */
 function convertScore(year, province, score, examType) {
-  // 类型兜底：新高考只覆盖 2017+，否则退回老高考
   var type = examType || 'science';
   if (type === 'new' && year < 2017) type = 'science';
 
+  // 1. 试图在锚点表里查
+  var subjOld = resolveSubj(province, year, type);
+  var subj2026 = resolveSubj(province, 2026, type);
+  var anchorsOld = lookupAnchors(province, year, subjOld);
+  var anchors2026 = lookupAnchors(province, 2024, subj2026); // 2026 用 2024 锚点作为最近代表
+
+  if (anchorsOld && anchors2026) {
+    // 查表等位分
+    var oldRank = interpolateRank(anchorsOld, score);
+    if (oldRank != null && oldRank > 0) {
+      // 用 2024 锚点近似 2026：rank → 分数
+      var newScore = interpolateScoreByRank(anchors2026, oldRank);
+      if (newScore != null) {
+        // 加 ±3 分扰动让结果更像"估算"
+        newScore = newScore + Math.round((Math.random() - 0.5) * 4);
+        newScore = Math.max(200, Math.min(750, newScore));
+        return {
+          newScore: newScore,
+          rank: oldRank,        // 显示当年位次（更准）
+          oldRank: oldRank,
+          source: 'table'       // 标记数据源
+        };
+      }
+    }
+  }
+
+  // 2. 查表失败，走正态分布兜底
   var dist = getDistribution(year, type);
   var provOff = PROV_OFFSET[province] || 8;
-  // 省份难度：高考大省均值略低一点（竞争大，更难拿高分）
   var adjustedMean = dist.mean - (provOff - 8) * 0.5;
-
-  // 当年 z-score
   var z = (score - adjustedMean) / dist.sd;
-  // 当年累积百分位（0-1）
   var percentile = normalCDF(z);
-
-  // 当年排名 = (1 - 百分位) × 当年考生数
   var candidatesOld = getCandidates(province, year) * 10000;
-  var oldRank = Math.max(1, Math.round((1 - percentile) * candidatesOld));
-
-  // 2026 年同百分位 → 反推等位分
+  var oldRankN = Math.max(1, Math.round((1 - percentile) * candidatesOld));
   var dist2026 = getDistribution(2026, type);
   var adjustedMean2026 = dist2026.mean - (provOff - 8) * 0.5;
   var z2026 = normalInv(percentile);
-  var newScore = Math.round(adjustedMean2026 + z2026 * dist2026.sd);
-
-  // 加一点微小扰动（让同一人两次结果略不同，更像"估算"而非"定值"）
-  newScore = newScore + Math.round((Math.random() - 0.5) * 4);
-  var clamped = Math.max(200, Math.min(750, newScore));
-
-  // 2026 年等位排名
+  var newScoreN = Math.round(adjustedMean2026 + z2026 * dist2026.sd);
+  newScoreN = newScoreN + Math.round((Math.random() - 0.5) * 4);
+  var clampedN = Math.max(200, Math.min(750, newScoreN));
   var candidates2026 = getCandidates(province, 2026) * 10000;
-  var newRank = Math.max(50, Math.round((1 - percentile) * candidates2026));
-
-  return { newScore: clamped, rank: newRank, oldRank: oldRank, percentile: percentile };
+  var newRankN = Math.max(50, Math.round((1 - percentile) * candidates2026));
+  return { newScore: clampedN, rank: newRankN, oldRank: oldRankN, source: 'normal' };
 }
 
 /* ============ 分数 → 档位 ============ */
@@ -1824,6 +1945,8 @@ var state = {
     op2.value = PROVINCES[j]; op2.textContent = PROVINCES[j];
     provSel.appendChild(op2);
   }
+  // 页面启动时后台异步加载真实一分一段数据
+  if (typeof loadScoreTable === 'function') loadScoreTable();
 })();
 
 /* -------- 场景切换 -------- */
